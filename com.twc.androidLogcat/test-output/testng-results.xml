@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" total="2" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="195301" started-at="2015-11-19T13:20:04Z" finished-at="2015-11-19T13:23:20Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="195301" started-at="2015-11-19T13:20:04Z" finished-at="2015-11-19T13:23:20Z">
+      <class name="com.twc.AD_TestSuite.Smoke_Test">
+        <test-method status="PASS" signature="Capabilities_Launch()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="Capabilities_Launch" is-config="true" duration-ms="85998" started-at="2015-11-19T18:50:04Z" finished-at="2015-11-19T18:51:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Capabilities_Launch -->
+        <test-method status="PASS" signature="getBuildVersion()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="getBuildVersion" is-config="true" duration-ms="0" started-at="2015-11-19T18:51:30Z" finished-at="2015-11-19T18:51:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getBuildVersion -->
+        <test-method status="PASS" signature="App_Kill_ReLaunch()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="App_Kill_ReLaunch" is-config="true" duration-ms="20275" started-at="2015-11-19T18:51:30Z" finished-at="2015-11-19T18:51:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- App_Kill_ReLaunch -->
+        <test-method status="PASS" signature="AD_C333174_Verify_FactualCall_On_FreshLaunch()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="AD_C333174_Verify_FactualCall_On_FreshLaunch" duration-ms="5127" started-at="2015-11-19T18:51:51Z" finished-at="2015-11-19T18:51:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AD_C333174_Verify_FactualCall_On_FreshLaunch -->
+        <test-method status="PASS" signature="App_Kill_ReLaunch()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="App_Kill_ReLaunch" is-config="true" duration-ms="20250" started-at="2015-11-19T18:51:56Z" finished-at="2015-11-19T18:52:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- App_Kill_ReLaunch -->
+        <test-method status="FAIL" signature="AD_C333182_LotameAdTargeting_On_AppLaunch()[pri:0, instance:com.twc.AD_TestSuite.Smoke_Test@34ce8af7]" name="AD_C333182_LotameAdTargeting_On_AppLaunch" duration-ms="63633" started-at="2015-11-19T18:52:16Z" finished-at="2015-11-19T18:53:20Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 60.52 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: 'unknown', time: '2015-07-30 11:02:44'
+System info: host: 'kishore.corp.monocept.com', ip: '192.168.1.114', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11', java.version: '1.8.0_60'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities [{app=/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/APKFile/TWC_600000951_release.apk, appPackage=com.weather.Weather, networkConnectionEnabled=true, warnings={}, databaseEnabled=false, deviceName=03157df33d91c039, platform=LINUX, appActivity=com.weather.Weather.app.SplashScreenActivity, desired={app=/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/APKFile/TWC_600000951_release.apk, appPackage=com.weather.Weather, appActivity=com.weather.Weather.app.SplashScreenActivity, appium-version=1.0, platformVersion=5.1.1, platformName=Android, deviceName=Samsung}, appium-version=1.0, platformVersion=5.1.1, webStorageEnabled=false, locationContextEnabled=false, browserName=Android, takesScreenshot=true, javascriptEnabled=true, platformName=Android}]
+Session ID: 2a0e93e1-df97-4a4f-9326-e2c8c37c3b72
+*** Element info: {Using=name, value=Right Now}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 60.52 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: 'unknown', time: '2015-07-30 11:02:44'
+System info: host: 'kishore.corp.monocept.com', ip: '192.168.1.114', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11', java.version: '1.8.0_60'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities [{app=/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/APKFile/TWC_600000951_release.apk, appPackage=com.weather.Weather, networkConnectionEnabled=true, warnings={}, databaseEnabled=false, deviceName=03157df33d91c039, platform=LINUX, appActivity=com.weather.Weather.app.SplashScreenActivity, desired={app=/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/APKFile/TWC_600000951_release.apk, appPackage=com.weather.Weather, appActivity=com.weather.Weather.app.SplashScreenActivity, appium-version=1.0, platformVersion=5.1.1, platformName=Android, deviceName=Samsung}, appium-version=1.0, platformVersion=5.1.1, webStorageEnabled=false, locationContextEnabled=false, browserName=Android, takesScreenshot=true, javascriptEnabled=true, platformName=Android}]
+Session ID: 2a0e93e1-df97-4a4f-9326-e2c8c37c3b72
+*** Element info: {Using=name, value=Right Now}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:421)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:102)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElementByName(AndroidDriver.java:1)
+	at com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch_2.Verify_LotameCall_onapp_launch(SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch_2.java:73)
+	at com.twc.AD_TestSuite.Smoke_Test.AD_C333182_LotameAdTargeting_On_AppLaunch(Smoke_Test.java:76)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:659)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:845)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1153)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:771)
+	at org.testng.TestRunner.run(TestRunner.java:621)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:357)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:352)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:310)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:259)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1199)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1124)
+	at org.testng.TestNG.run(TestNG.java:1032)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AD_C333182_LotameAdTargeting_On_AppLaunch -->
+      </class> <!-- com.twc.AD_TestSuite.Smoke_Test -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
