@@ -53,13 +53,33 @@ public class Smoke_Test extends Driver{
 		pulltorefresh.Verify_PulltoRefresh();
 	}
 	//Hourly Ad
-	@Test(priority=6, threadPoolSize = 1,invocationCount = 1 )
+	@Test(priority=2, threadPoolSize = 1,invocationCount = 1 )
 	public void AD_C333175_Verify_Ad_On_HourlyExtended_page() throws Exception {
 		
 		SmokeTest_AD_C333175_Hourly hourlyExtend = new SmokeTest_AD_C333175_Hourly();
 		hourlyExtend.verify_adpresent_onextendedHourly_page();
 
 	}
+    
+    	//10 Day Ad
+    	@Test(priority=3, threadPoolSize = 1,invocationCount = 1)
+    	public void AD_C333180_Verify_Ad_On_10DayExtended_page() throws Exception {
+    
+    		SmokeTest_AD_C333180_10Day tendayExtended = new SmokeTest_AD_C333180_10Day();
+    		tendayExtended.verify_adpresent_onextendedTenday_page();
+    
+    	}
+    
+    
+    //	Maps page Ad
+    @Test(priority=4, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C333176_Verify_Ad_On_MapsExtended_page() throws Exception {
+        
+        SmokeTest_AD_C333176_Map mapsExtended = new SmokeTest_AD_C333176_Map();
+        mapsExtended.verify_adpresent_onextendedMap_page();
+        
+    }
+    
 
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {

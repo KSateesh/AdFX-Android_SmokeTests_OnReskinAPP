@@ -59,24 +59,25 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 				Ad.findElementById("com.weather.Weather:id/hourly_title_textview").click();
 //				Ad.findElementByName("HOURLY").click();
 
-				MobileElement AdEle = (MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
-
-				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
-
-				wait1.until(ExpectedConditions.visibilityOf(AdEle));
-
-				if (AdEle.isDisplayed()) {
-
-					System.out.println("Ad is displayed on Hourly-Extended page");
-
-					Thread.sleep(2000);
-					// Clicking back button
-					Ad.findElementByAccessibilityId("Navigate up").click();
-
-				}break;
-				
-//				Ad.findElementByAccessibilityId("Navigate up").click();
-//				break;
+//				MobileElement AdEle = (MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+//
+//				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
+//
+//				wait1.until(ExpectedConditions.visibilityOf(AdEle));
+//
+//				if (AdEle.isDisplayed()) {
+//
+//					System.out.println("Ad is displayed on Hourly-Extended page");
+//
+//					Thread.sleep(2000);
+//					// Clicking back button
+//					Ad.findElementByAccessibilityId("Navigate up").click();
+//
+//				}break;
+                
+				Thread.sleep(2000);
+				Ad.findElementByAccessibilityId("Navigate up").click();
+				break;
 
 			} else {
 
