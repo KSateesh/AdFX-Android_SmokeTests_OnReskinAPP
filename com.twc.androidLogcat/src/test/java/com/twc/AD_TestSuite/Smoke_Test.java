@@ -77,8 +77,17 @@ public class Smoke_Test extends Driver{
         
         SmokeTest_AD_C333176_Map mapsExtended = new SmokeTest_AD_C333176_Map();
         mapsExtended.verify_adpresent_onextendedMap_page();
-        
+       
     }
+    
+    	//News Page Ad
+    	@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
+    	public void AD_C333177_Verify_Ad_On_NewsExtended_page() throws Exception {
+    
+    		SmokeTest_AD_C333177_News newsExtended = new SmokeTest_AD_C333177_News();
+    		newsExtended.verify_adpresent_onextendedNews_page();
+    
+    	}
     
 
 	@BeforeTest
@@ -108,8 +117,8 @@ public class Smoke_Test extends Driver{
 //		buildVersion.moreOptionsClick();
 
 		// Calling the method to know build version of the app class
-	  // setAddress_Location sa = new setAddress_Location();
-	 // sa.setLocation();
+	   setAddress_Location sa = new setAddress_Location();
+	  sa.setLocation();
 		
 	}
 
