@@ -1,9 +1,9 @@
 package com.twc.AD_TestSuite;
 
 
+
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-
 import com.twc.AppiumAutoStart.Capabilities_android;
 import com.twc.General.DeleteFile;
 import com.twc.General.File_Exist;
@@ -19,18 +19,14 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333177_News;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333179_Verify_PullToRefresh;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day_2;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch_2;
+import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
 import com.twc.driver.Driver;
-
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-
 import io.appium.java_client.AppiumDriver;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -89,6 +85,22 @@ public class Smoke_Test extends Driver{
     
     	}
     
+    
+    //LotameAdTargeting_On_AppLaunch
+    @Test(priority=6, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C333182_LotameAdTargeting_On_AppLaunch() throws Exception
+    {
+        SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch LotameAdTarget = new SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch();
+        LotameAdTarget.Verify_LotameCall_onapp_launch_test();
+    }
+    
+    //Facutal cal
+    @Test(priority=7, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C333174_Verify_FactualCall_On_FreshLaunch() throws Exception{
+        SmokeTest_AD_C333174_FactualCall FactualCall = new SmokeTest_AD_C333174_FactualCall();
+        FactualCall.verify_facualcal_onfresh_launch();
+        
+    }
 
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
@@ -113,8 +125,8 @@ public class Smoke_Test extends Driver{
 	public void getBuildVersion() throws Exception {
 
 		// Calling the method to know build version of the app class
-//		toKnowBuildVersion buildVersion = new toKnowBuildVersion();
-//		buildVersion.moreOptionsClick();
+		toKnowBuildVersion buildVersion = new toKnowBuildVersion();
+		buildVersion.moreOptionsClick();
 
 		// Calling the method to know build version of the app class
 	   setAddress_Location sa = new setAddress_Location();
