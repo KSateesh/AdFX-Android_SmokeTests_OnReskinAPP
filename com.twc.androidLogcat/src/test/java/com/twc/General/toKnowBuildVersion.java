@@ -53,7 +53,7 @@ public class toKnowBuildVersion extends Driver {
 
 		backButton.click();
 
-//		backButton.click();
+		backButton.click();
 
 //		try {
 //

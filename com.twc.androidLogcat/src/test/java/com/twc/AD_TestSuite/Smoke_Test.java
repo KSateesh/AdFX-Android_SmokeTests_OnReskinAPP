@@ -17,7 +17,6 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333175_Hurricane;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333176_Map;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333177_News;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333179_Verify_PullToRefresh;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day_2;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
 import com.twc.driver.Driver;
@@ -102,6 +101,14 @@ public class Smoke_Test extends Driver{
         
     }
 
+       //Weather FX Cal
+    @Test(priority=8, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C333173_Verify_WeatherFX_ApiCall() throws Exception {
+        SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall WeatherFX_ApiCall = new SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall();
+        WeatherFX_ApiCall.verify_WeatherFX_Apicall_On_FreshLaunch();
+        
+    }
+    
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
 		
