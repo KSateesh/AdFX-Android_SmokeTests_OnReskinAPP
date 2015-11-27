@@ -23,8 +23,7 @@ public class SmokeTest_AD_C333180_10Day extends Driver{
 	@SuppressWarnings("unused")
 	public void verify_adpresent_onextendedTenday_page() throws Exception
 	{
-		
-		
+	
 		//app kill and relaunch the app
 //		app_Kill_Relaunch.Kill_realaunch();
 
@@ -52,11 +51,10 @@ public class SmokeTest_AD_C333180_10Day extends Driver{
 			
 			if(tenday!= null && tenday.isDisplayed())	
 			{ 
-				System.out.println("Daily section is displayed and tapping on 15 DAYS button");
+				System.out.println("Daily section is displayed and click on the 15Days button");
 				
-				try{
-					
-				 Ad.findElementById("com.weather.Weather:id/daily_more").click();
+				try{				
+					Ad.findElementById("com.weather.Weather:id/daily_more").click();
 //					Ad.findElementByName("15 DAYS").click();
 
 				}catch(NoSuchElementException e)
@@ -64,10 +62,8 @@ public class SmokeTest_AD_C333180_10Day extends Driver{
 					Ad.findElementByName("WEEKEND FORECAST").click();
 				}
 
-
-				MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
-
-				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
+				MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
+           	    WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 				wait1.until(ExpectedConditions.visibilityOf(AdEle));
 				
 				if(AdEle.isDisplayed())

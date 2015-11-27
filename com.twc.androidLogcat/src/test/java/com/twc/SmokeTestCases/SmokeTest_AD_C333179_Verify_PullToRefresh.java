@@ -18,40 +18,38 @@ import org.testng.annotations.Listeners;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+
 import com.relevantcodes.extentreports.LogStatus;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
 
 
 public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
-	
-	
+		
 	@SuppressWarnings({ "deprecation", "unused" })
 	public void Verify_PulltoRefresh() throws IOException, InterruptedException
 	{
-
+       // Setting the Native_App context
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 		
-		//Read from PropertyFilePath
+		//Read data from PropertyFile
 		Driver.property();
 		PropertyFile.property();
-
+        
 		String adbPath = properties.getProperty("adbPath");
-//		String[] str ={"/bin/bash", "-c", "/Users/monocept/Documents/adt-bundle-mac-x86_64-20130522/sdk/platform-tools/adb shell setprop log.tag.TwcAd DEBUG"};
 		String[] str ={"/bin/bash", "-c", adbPath+" shell setprop log.tag.TwcAd DEBUG"};
 		Process p = Runtime.getRuntime().exec(str);
 		
 		System.out.println("Debug command is done");
-	
-//		String[] str1 ={"/bin/bash", "-c", "/Users/monocept/Documents/adt-bundle-mac-x86_64-20130522/sdk/platform-tools/adb -d logcat -v time >> "+properties.getProperty("LogFilePath")};
 		String[] str1 ={"/bin/bash", "-c", adbPath+" -d logcat -v time >> "+properties.getProperty("LogFilePath")};
 		Process p1 = Runtime.getRuntime().exec(str1);
-		System.out.println("Logfile creation is done");
+		System.out.println("Writing App logs to LogFile");
 		
-		//Wait for 20 sec for element presence
-		WebDriverWait wait = new WebDriverWait(Ad, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+		Thread.sleep(2000);
+		//Wait for 10 sec for element presence
+//		WebDriverWait wait = new WebDriverWait(Ad, 10);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
         
 		//Temperature element
 		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
@@ -66,8 +64,9 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 		
 		System.out.println("Pulled the screen to REFRESH");
 		
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
+		//Read data from LogFile and verify the Branded BackGround Call
 		BufferedReader r = new BufferedReader(new FileReader(properties.getProperty("LogFilePath")));
         
 		String line = "";
@@ -88,7 +87,6 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					fstream));
 			String strLine;
-			// / read log line by line ------ strLine = br.readLines(6, 10); /
 			StringBuffer sb = new StringBuffer("");
 			while ((strLine = br.readLine()) != null) {
 				// parse strLine to obtain what you want /
@@ -97,27 +95,21 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 
 			}
 			
-		//	System.out.println("Sb is  ::"+sb.toString());
-			
+			String req1 = sb.toString().substring(sb.toString().lastIndexOf("URL=https://pubads.g.doubleclick.net/gampad/adx?iu=%2F7646%2Fapp_android_us%2Fdisplay%2Fbb"));
+			String req = req1.substring(req1.indexOf("URL"),req1.indexOf("lang")+4); // Den
+			// System.out.println("Request is ::"+req1);
+			System.out.println("BB call value :: " + req);
 
-			String req1 = sb.toString().substring( sb.toString().lastIndexOf("URL=https://pubads.g.doubleclick.net/gampad/adx?iu=%2F7646%2Fapp_android_us%2Fdisplay%2Fbb"));
-					String	req = req1.substring(req1.indexOf("&")+1,req1.indexOf("adid"));
-					System.out.println("Request is ::"+req1);
-					System.out.println("Request data is ::"+req);
-					
-					if(req1.contains("URL=https://pubads.g.doubleclick.net/gampad/adx?iu=%2F7646%2Fapp_android_us%2Fdisplay%2Fbb"))
-					{
-						System.out.println("Verified Branded Background call is present"); 
+			if (req1.contains("URL=https://pubads.g.doubleclick.net/gampad/adx?iu=%2F7646%2Fapp_android_us%2Fdisplay%2Fbb")) {
+				System.out.println("Branded Background call is present");
 
-					}else
-					{
-						System.out.println("Branded Background call is not presented");
-						
+			} else {
+				System.out.println("Branded Background call is not present");
 
-					}
+			}
 
-				System.out.println("Case Ended");
-			
+			System.out.println("Case Ended");
+
 			br.close();
 
 		} catch (Exception e) {
@@ -125,7 +117,5 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 		}
 	}
 
-
 }
-
 

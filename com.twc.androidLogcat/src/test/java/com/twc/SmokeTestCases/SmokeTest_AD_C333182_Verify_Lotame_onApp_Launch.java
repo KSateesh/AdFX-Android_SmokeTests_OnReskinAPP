@@ -62,14 +62,6 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
 		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
 		System.out.println("Temp : "+el.getText());
-//		
-//		Dimension dimensions = Ad.manage().window().getSize();
-//		System.out.println("dimensions :: "+dimensions);
-//		Thread.sleep(2000);
-//		int scrollStart = 2300;
-//		int scrollEnd = 30;
-//		Thread.sleep(4000);
-//		Ad.swipe(0, scrollStart, 0, scrollEnd, 2000);
 
 
 		Swipe.swipe();
@@ -133,19 +125,16 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 						arrays = req.split(" ");
 						
 						for(String keys : arrays){
-//							System.out.println("Keys ::"+keys);	
+
 							if(keys.contains("=")){
 								 key = keys.split("=");
 //								System.out.println("keys are :: "+key[0] + "---"+key[1]);
 								if(key[0].contains("sg"))
-								{						
-//									System.out.println("sg key [1] value is ::"+key[1]);									
+								{															
 									pubsg = key[1].toString();																		
 									pubsg= pubsg.substring(0,pubsg.lastIndexOf(",")) ;
 									pubsg=pubsg.replaceAll(",", ", ");
-//					    			System.out.println("pubsg: "+ pubsg);
-					    			pubad_sgvalues.add(pubsg);
-//					    			System.out.println("pubad values are(updated) :: " + pubad_sgvalues.toString());					    			
+					    			pubad_sgvalues.add(pubsg);					    			
 									break;
 								} 
 							}
@@ -188,12 +177,7 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			System.out.println("pubad_sg values are :: " + pubad_sgvalues.toString());
 				    			String expected = pubad_sgvalues.toString().replace("[", "").replace("]", "");
 				    			
-//				    			System.out.println("actual: "+actual);
-//				    			System.out.println("expected: "+expected);				    			
-//				    			if(actual.equalsIgnoreCase(expected)){
-//				    				System.out.println("true");
-//				    			}
-				    			
+               //Asserting the PubAd_SG values with Lotame Call id values of Audiences object of JSON Object
 					Assert.assertEquals(actual, expected);
 					System.out.println("PubAd_SG values and Lotame call Audience values are matched");
 				    				    
@@ -206,9 +190,6 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 					e.printStackTrace();
 				}
 
-
 				System.out.println("Verifying Lotame Call test case done");
-			
-
         }
     }

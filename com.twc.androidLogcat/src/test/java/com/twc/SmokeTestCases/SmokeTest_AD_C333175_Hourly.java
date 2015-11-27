@@ -36,9 +36,19 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 
 		//To get the dimensions of the screen
 		Dimension dimensions = Ad.manage().window().getSize();
-		//System.out.println("dimensions :: "+dimensions);
+		System.out.println("dimensions :: "+dimensions);
+		
+		Thread.sleep(4000);
+		//Wait for 10 sec for element presence
+		WebDriverWait wait = new WebDriverWait(Ad, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+        
+		//Temperature element
+		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
+		System.out.println("Temp : "+el.getText());
 		
 		System.out.println("Searching for Hourly section");
+		
 		
 		for (int i = 0; i < dimensions.getHeight(); i++) {
 
@@ -57,27 +67,32 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 				System.out.println("Hourly section is displayed and tapping on the same");
 				
 				Ad.findElementById("com.weather.Weather:id/hourly_title_textview").click();
-				Ad.findElementByName("HOURLY").click();
+//				Ad.findElementByName("HOURLY").click();
 
-				MobileElement AdEle = (MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+//		try {
+//				MobileElement AdEle = (MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+             MobileElement extendeHourlyAd = (MobileElement)Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 
-				wait1.until(ExpectedConditions.visibilityOf(AdEle));
+				wait1.until(ExpectedConditions.visibilityOf(extendeHourlyAd));
 
-				if (AdEle.isDisplayed()) {
-
-					System.out.println("Ad is displayed on Hourly-Extended page");
+				if (extendeHourlyAd.isDisplayed()) 
+				  {
+					System.out.println("Ad is present on Extended_Hourly page");
 
 					Thread.sleep(2000);
+					
 					// Clicking back button
 					Ad.findElementByAccessibilityId("Navigate up").click();
-
-				}break;
-                
-//				Thread.sleep(2000);
-//				Ad.findElementByAccessibilityId("Navigate up").click();
-//				break;
+					break;
+				   }
+//			} catch (Exception e)
+//				{
+//					System.out.println("Extended hourly Ad is not present");
+//					break;
+//				}
+				
 
 			} else {
 

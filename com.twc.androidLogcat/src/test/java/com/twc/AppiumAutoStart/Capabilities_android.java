@@ -58,6 +58,8 @@ public class Capabilities_android extends Driver {
 		capabilities.setCapability("app", properties.getProperty("appPath"));
 		capabilities.setCapability("appPackage", "com.weather.Weather");
 		capabilities.setCapability("appActivity", "com.weather.Weather.app.SplashScreenActivity");
+		capabilities.setCapability("autoAcceptAlerts",true);
+		capabilities.setCapability("newCommandTimeout",100000);
 
 		Ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		Ad.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
