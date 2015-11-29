@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import atu.testng.reports.ATUReports;
+
 import com.twc.General.Swipe;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
@@ -29,7 +31,7 @@ import org.testng.Assert;
 
 public class SmokeTest_AD_C333174_FactualCall extends Driver {
 
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked", "unused", "deprecation", "resource" })
 	public void Factual_Test() throws Exception{
 
 		//Read data from Property file if required
@@ -48,16 +50,25 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 		Process p1 = Runtime.getRuntime().exec(str1);
 		System.out.println("Writing App logs to LogFile");
 			
-		//Wait for 10 sec for element presence
+		ATUReports.add("Launch the app",false);
+		
+		try {
+//		//Wait for 10 sec for element presence
 		WebDriverWait wait = new WebDriverWait(Ad, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
 		
 		//Temperature  Element
 		MobileElement tempElement = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
 		System.out.println("Temperature : "+tempElement.getText());
-    
+		
+		ATUReports.add("Scroll to Feed-1 Ad", false);
 		Swipe.swipe();
 		Swipe.swipe();
+		}catch(Exception e){
+			
+//			System.out.println("Exception message :: "+e);
+			
+		}
 		
 		Thread.sleep(2000);
 	
@@ -69,7 +80,8 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 	
 		if(AdEle.isDisplayed())
 		{
-			System.out.println("Feed-1 Ad is displayed");
+			System.out.println("Feed-1 Ad is present");
+			ATUReports.add("Feed-1 Ad is present", false);
 		}
 
 		Thread.sleep(2000);
@@ -117,7 +129,6 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 						// System.out.println(key[0] + "---"+key[1]);
 						mapkeys.put(key[0], key[1]);
 					}
-
 				}
 								
 				String faudValue=null;
@@ -148,8 +159,7 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 			Thread.sleep(2000);
 			
 			// Capturing the Factual Call Data (location.wfxtriggers.com/geopulse)
-			if (sb.toString().contains(
-					"response from server is {" + '"' + "journaled")) {
+			if (sb.toString().contains("response from server is {" + '"' + "journaled")) {
 
 				if (sb.toString().contains("response from server is {" + "\"journaled\"")) {					
 					fatual = sb.toString().substring(sb.toString().lastIndexOf("response from server is {"+'"'+"journaled"));
@@ -170,19 +180,32 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 					filterValues.add(proximityfilter);	
 				}		
 			}
-            String filters= filterValues.toString().replaceAll(", ", ",");
-			System.out.println("Location_Geopulse_Filter Values "+ filters.toString());
+			
+			ATUReports.add("Verify PubAd_FAUD values", false);
+			String pubad_faud = pubad_faudvalues.toString();
+			System.out.println("PubAd_FAUD Values "+ pubad_faud.toString());
+			ATUReports.add("PubAd_FAUD values :: "+pubad_faud, false);
+			
+			ATUReports.add("Verify Location_Geopulse_Filter values", false);
+			String filters= filterValues.toString().replaceAll(", ", ",");
+			System.out.println("Location_Geopulse_Filter values "+ filters.toString());
+			ATUReports.add("Location_Geopulse_Filter values :: "+filters, false);
+			
+			ATUReports.add("Verify PubAd_FGEO values", false);
 			String pubad_fgeo = pubad_fgeovalues.toString();
 			System.out.println("PubAd_FGEO Values "+ pubad_fgeo.toString());
-						
+			ATUReports.add("PubAd_FGEO values :: "+pubad_fgeo, false);
+			
 //			Assert.assertEquals(filters, pubad_fgeo);
 //			if(filters.equalsIgnoreCase(pubad_fgeo)){
 			if(pubad_fgeo.equalsIgnoreCase(filters)){
 				
 				System.out.println("PubAd_FGEO values and Factual call filter values are matched");
+				ATUReports.add("PubAd_FGEO values and Factual call filter values are matched", false);	
 			}else{
 				
 				System.out.println("PubAd_FGEO values and Factual call filter values are matched");
+				ATUReports.add("PubAd_FGEO values and Factual call filter values are matched", false);
 				}
 			
 			br.close();
@@ -190,7 +213,7 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 			e.printStackTrace();
 		}
 
-		System.out.println("Verifying Lotame Call test case done");
+		System.out.println("Verifying Factual Call test case done");
 	}
 
 }

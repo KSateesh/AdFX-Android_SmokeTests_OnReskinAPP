@@ -28,6 +28,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import atu.testng.reports.ATUReports;
+
 import com.twc.General.Swipe;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
@@ -36,7 +38,7 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 	
 	public static String ids = null;
 	
-	@SuppressWarnings({ "unused", "unchecked" })
+	@SuppressWarnings({ "unused", "unchecked", "deprecation" })
 //	public static void main(String[] args) throws IOException, InterruptedException {
 	public void Verify_LotameCall_onapp_launch_test() throws InterruptedException, ParseException, IOException
 	{
@@ -56,16 +58,22 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 		Process p1 = Runtime.getRuntime().exec(str1);
 		System.out.println("Writing App logs to LogFile");
 		
-		
+		ATUReports.add("Launch the app",false);
+		try {
 		//Wait for 20 sec for element presence
 		WebDriverWait wait = new WebDriverWait(Ad, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+		
+		//Temperature  Element
 		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
 		System.out.println("Temp : "+el.getText());
 
-
 		Swipe.swipe();
 		Swipe.swipe();
+		} catch(Exception e){
+//			System.out.println("Exception message : "+e);
+		}
+		
 		Thread.sleep(2000);
 
 		
@@ -77,7 +85,8 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 	
 		if(AdEle.isDisplayed())
 		{
-			System.out.println("Ad is displayed on Below Right Now Section");
+			System.out.println("Feed_1 Ad is present");
+			ATUReports.add("Feed_1 Ad is present",false);
 
 		}
 
@@ -140,8 +149,9 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 							}
 						}
 						System.out.println("pubad_sg values are :: " + pubad_sgvalues.toString());
-					}
 						
+					}
+					
 		               Thread.sleep(2000);
 						// Capturing the Lotame Call Data (bcp.crwdcntrl.net)
 						if(sb.toString().contains("response from server is {"+'"'+"Profile")){
@@ -170,17 +180,20 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			   System.out.println("id values : " + id);
 				    			   idvalues.add(id);
 				    			}
-				    			
+				    			ATUReports.add("Verify Audience values from Lotame API call",false);
 				    			System.out.println("idvalues are :: " + idvalues.toString());
 				    			String actual = idvalues.toString().replace("[", "").replace("]", "");
+				    			ATUReports.add("Lotame API Call Audience values are :: "+actual,false);
 				    			
+				    			ATUReports.add("Verify PubAd_SG values from PubAd call",false);
 				    			System.out.println("pubad_sg values are :: " + pubad_sgvalues.toString());
 				    			String expected = pubad_sgvalues.toString().replace("[", "").replace("]", "");
+				    			ATUReports.add("PubAd_SG values are :: "+expected,false);
 				    			
                //Asserting the PubAd_SG values with Lotame Call id values of Audiences object of JSON Object
 					Assert.assertEquals(actual, expected);
 					System.out.println("PubAd_SG values and Lotame call Audience values are matched");
-				    				    
+					ATUReports.add("PubAd_SG and Lotame call values are matched",false);				    
 						}
 					}
 					

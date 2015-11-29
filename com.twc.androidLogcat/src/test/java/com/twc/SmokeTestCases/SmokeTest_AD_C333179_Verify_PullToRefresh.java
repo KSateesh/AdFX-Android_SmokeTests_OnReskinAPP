@@ -18,6 +18,7 @@ import org.testng.annotations.Listeners;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import atu.testng.reports.ATUReports;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.twc.driver.Driver;
@@ -46,12 +47,14 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 		Process p1 = Runtime.getRuntime().exec(str1);
 		System.out.println("Writing App logs to LogFile");
 		
-		Thread.sleep(2000);
+		ATUReports.add("Launch the app",false);
+		Thread.sleep(1000);
 		//Wait for 10 sec for element presence
-//		WebDriverWait wait = new WebDriverWait(Ad, 10);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+		WebDriverWait wait = new WebDriverWait(Ad, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
         
 		//Temperature element
+		ATUReports.add("On CC Screen,Temperature is present", false);
 		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
 		System.out.println("Temp : "+el.getText());
 		
@@ -59,10 +62,11 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 		MobileElement el1 = (MobileElement) Ad.findElementById("com.weather.Weather:id/hilo");
 		System.out.println("hilo : "+el1.getText());
 
+		ATUReports.add("On CC Screen,Pull the screen to REFRESH", false);
 		TouchAction action1 = new TouchAction(Ad);
 		action1.longPress(el).moveTo(el1).release().perform();
 		
-		System.out.println("Pulled the screen to REFRESH");
+		System.out.println("Pull the screen to REFRESH is done");
 		
 		Thread.sleep(2000);
 
@@ -82,6 +86,7 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 
 		Map<String, String> mapkeys = new HashMap<String, String>();
 
+//		ATUReports.add("Get the Feed call data", false);
 		try {
 			FileInputStream fstream = new FileInputStream(FilePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -102,13 +107,15 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 
 			if (req1.contains("URL=https://pubads.g.doubleclick.net/gampad/adx?iu=%2F7646%2Fapp_android_us%2Fdisplay%2Fbb")) {
 				System.out.println("Branded Background call is present");
+				ATUReports.add("Branded Background call is present", false);
 
 			} else {
-				System.out.println("Branded Background call is not present");
+				System.out.println("Branded Background call is NOT present");
+				ATUReports.add("Branded Background call is NOT present", false);
 
 			}
 
-			System.out.println("Case Ended");
+			System.out.println("PulltoRefresh test case is done");
 
 			br.close();
 
