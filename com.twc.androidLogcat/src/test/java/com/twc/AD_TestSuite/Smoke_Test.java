@@ -1,6 +1,8 @@
 package com.twc.AD_TestSuite;
 
 
+
+
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -32,6 +34,7 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333179_Verify_PullToRefresh;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day_2;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule;
 import com.twc.SmokeTestCases.SmokeTest_c334143_CleanLaunch_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall;
 import com.twc.driver.Driver;
@@ -55,6 +58,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
+
 
 
 @Listeners({ATUReportsListener.class, MethodListener.class })
@@ -142,6 +146,15 @@ public class Smoke_Test extends Driver{
 		cleanLaunch.CleanLaunch_launch();
 
 	}
+    
+    //Spotlight Ad on Cold & Flu module
+    @Test(priority=9, threadPoolSize = 1,invocationCount = 1)
+    public void SmokeTest_AD_C33318_HealthModule_ColdFlu_Page() throws Exception {
+        
+        SmokeTest_AD_C33318_HealthModule cold_flu = new SmokeTest_AD_C33318_HealthModule();
+        cold_flu.verify_SpotLightAd_present_on_ColdFlu_section();
+        
+    }
 		
 //	===============
 	
