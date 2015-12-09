@@ -180,7 +180,7 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 						wfxValues = sb.toString().substring(index);
 						wfxValues = wfxValues.substring(wfxValues.indexOf("scatterSegs" + '"'+ ":") + 13,wfxValues.indexOf("]}}") + 1);
 				// WFXTG call of https://triggers.wfxtriggers.com
-						System.out.println("Verifing the WFXTG call"+ wfxValues);
+						//System.out.println("Verifing the WFXTG call"+ wfxValues);
 					}
 					test = index + 2;
 				}
