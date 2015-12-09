@@ -91,7 +91,7 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 			ATUReports.add("Feed-1 Ad is present", false);
 		}
 		
-		Thread.sleep(4000);
+		Thread.sleep(6000);
 		// Reading the log file for feed_1,to verify WFXTG value 
 
 				BufferedReader r = new BufferedReader(new FileReader(properties.getProperty("LogFilePath")));
@@ -159,7 +159,16 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 						System.out.println("================================");
 
 			try {
-				// Capturing the WFXTG Call Data
+			
+				//Verify the WFX_API_Call is present in Logs
+				String WFX_API_Call =null;
+				if (sb.toString().contains("https://triggers.wfxtriggers.com/json/?")) {
+					WFX_API_Call = sb.toString().substring(sb.toString().lastIndexOf("https://triggers.wfxtriggers.com/json/?resp_type=json&acctid=B88159&current=true"));
+					WFX_API_Call = WFX_API_Call.substring(WFX_API_Call.indexOf("https"), WFX_API_Call.indexOf("true")+4);
+					System.out.println("WFX API Call call is present and the url is : \n"+WFX_API_Call);
+					ATUReports.add("WFX API Call is present and the url is : \n",false);
+				}
+				
 				String wfxValues = null;
 				int test = 0;
 				for (int i = 1; i <= 6; i++) {
@@ -170,7 +179,8 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 					} else if (index != emptyindex) {
 						wfxValues = sb.toString().substring(index);
 						wfxValues = wfxValues.substring(wfxValues.indexOf("scatterSegs" + '"'+ ":") + 13,wfxValues.indexOf("]}}") + 1);
-						System.out.println("Verifing the WFX call"+ wfxValues);
+				// WFXTG call of https://triggers.wfxtriggers.com
+						System.out.println("Verifing the WFXTG call"+ wfxValues);
 					}
 					test = index + 2;
 				}
@@ -184,9 +194,10 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 //								System.out.println("Verifing the WFX call " + wfxValues);
 //							}
 							System.out.println("================================");
-							
+														
 							Thread.sleep(1000);
-
+							
+							// Capturing the WFXTG Call Data
 							List<String> segmentList = new ArrayList<String>();
 							String seg = null;
 							String zip = zipcode; 

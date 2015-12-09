@@ -115,12 +115,20 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				sb.append(strLine);
 
 			}
+			
+			//Verify the Factual_API_Call is present in Logs
+			String factualCall =null;
+			if (sb.toString().contains("https://location.wfxtriggers.com/geopulse/")) {
+				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
+				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
+				System.out.println("Factual API call is present and the url is : \n"+factualCall);
+				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);
+			}
 		
 			List<String> pubad_faudvalues = new ArrayList<String>();
 			List<String> pubad_fgeovalues = new ArrayList<String>();
 			
 			String req=null;
-			
 			if (sb.toString().contains("slotName=weather.feed1")) {
 			    req = sb.toString().substring(sb.toString().lastIndexOf("slotName=weather.feed1"));
 				req = req.substring(req.indexOf(",") + 1, req.indexOf("}"));

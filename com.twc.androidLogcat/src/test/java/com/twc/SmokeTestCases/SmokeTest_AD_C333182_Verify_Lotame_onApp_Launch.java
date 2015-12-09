@@ -123,6 +123,27 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 
 					}
 					
+					//Verify the Lotame_API_Call is present in Logs
+					String lotameCall =null;
+					String BCP_lotameCall =null;
+			  try{
+				  if (sb.toString().contains("http://ad.crwdcntrl.net/")) {
+						lotameCall = sb.toString().substring(sb.toString().lastIndexOf("http://ad.crwdcntrl.net/"));
+						lotameCall = lotameCall.substring(lotameCall.indexOf("http"), lotameCall.indexOf("net")+4);
+						System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
+						ATUReports.add("Lotame call is present and the url is : \n"+lotameCall,false);
+					 }
+				} catch(Exception e){
+					if (sb.toString().contains("http://bcp.crwdcntrl.net/")) {
+						BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("http://bcp.crwdcntrl.net/"));
+						BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("http"), BCP_lotameCall.indexOf("net")+4);
+						System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
+						ATUReports.add("BCP_Lotame call is present and the url is : \n"+BCP_lotameCall,false);
+					  }
+				}
+					
+					
+					
 					String[] arrays;
 					String[] key;
 					List<String> pubad_sgvalues = new ArrayList<String>();
@@ -177,7 +198,7 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			while (AudienceIterator.hasNext()) {
 				    			    JSONObject AudienceObject = (JSONObject) AudienceIterator.next();
 				    			   String id = AudienceObject.get("id").toString();
-				    			   System.out.println("id values : " + id);
+				    			   System.out.println("Lotame_Audience id value is : " + id);
 				    			   idvalues.add(id);
 				    			}
 				    			ATUReports.add("Verify Audience values from Lotame API call",false);
@@ -186,11 +207,11 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			ATUReports.add("Lotame API Call Audience values are :: "+actual,false);
 //				    			ATUReports.add("Audience values are present in Lotame Call",false);
 				    			
-				    			ATUReports.add("Verify PubAd_SG values from PubAd call",false);
+				    			ATUReports.add("Verify PubAd_SG values from Feed_1 call",false);
 				    			System.out.println("pubad_sg values are :: " + pubad_sgvalues.toString());
 				    			String expected = pubad_sgvalues.toString().replace("[", "").replace("]", "");
 				    			ATUReports.add("PubAd_SG values are :: "+expected,false);
-//				    			ATUReports.add("PubAd_SG values are present ",false);
+//				    			ATUReports.add("PubAd_SG values are present in Feed_1 Call",false);
 				    			
                //Asserting the PubAd_SG values with Lotame Call id values of Audiences object of JSON Object
 					Assert.assertEquals(actual, expected);

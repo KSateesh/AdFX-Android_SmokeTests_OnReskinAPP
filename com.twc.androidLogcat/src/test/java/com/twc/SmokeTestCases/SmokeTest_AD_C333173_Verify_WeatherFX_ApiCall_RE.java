@@ -123,6 +123,17 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 				sb.append(strLine);
 
 			}
+			
+			//Verify the WFX_API_Call is present in Logs
+			String WFX_API_Call =null;
+			if (sb.toString().contains("https://triggers.wfxtriggers.com/json/?")) {
+				WFX_API_Call = sb.toString().substring(sb.toString().lastIndexOf("https://triggers.wfxtriggers.com/json/?resp_type=json&acctid=B88159&current=true"));
+				WFX_API_Call = WFX_API_Call.substring(WFX_API_Call.indexOf("https"), WFX_API_Call.indexOf("B88159")+6);
+				System.out.println("WFX API Call call is present and the url is : \n"+WFX_API_Call);
+				ATUReports.add("WFX API Call is present and the url is : \n"+WFX_API_Call,false);
+			}
+			
+			
 			List<String> wfxtg_values = new ArrayList<String>();
 			ATUReports.add("Verify the WFXTG values in Feed_1 Call",false);
 			

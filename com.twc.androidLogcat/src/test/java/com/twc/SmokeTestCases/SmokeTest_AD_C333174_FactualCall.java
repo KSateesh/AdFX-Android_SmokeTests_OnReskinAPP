@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import atu.testng.reports.ATUReports;
 
 import com.twc.General.Swipe;
+import com.twc.General.app_Kill_Relaunch;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
 
@@ -34,6 +35,9 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 	@SuppressWarnings({ "unchecked", "unused", "deprecation", "resource" })
 	public void Factual_Test() throws Exception{
 
+		//app kill and relaunch the app
+				app_Kill_Relaunch.Kill_realaunch();
+				
 		//Read data from Property file if required
 	    Driver.property();
 		PropertyFile.property();
@@ -151,6 +155,15 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 				}
 			}
 			
+			//Verify the Factual_API_Call is present in Logs
+			String factualCall =null;
+			if (sb.toString().contains("https://location.wfxtriggers.com/geopulse/")) {
+				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
+				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
+				System.out.println("Factual API call is present and the url is : \n"+factualCall);
+				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);
+			}
+			
 			List<String> filterValues = new ArrayList<String>();
 			String fatual = null;
 			String proximityfilter =null;
@@ -197,7 +210,9 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
          //Asserting the PubAd_FGEO values and Factual_call filter values
 //			Assert.assertEquals(filters, pubad_fgeo);
 //			if(filters.equalsIgnoreCase(pubad_fgeo)){
-			if(pubad_fgeo.equalsIgnoreCase(filters)){
+//			if(pubad_fgeo.equalsIgnoreCase(filters)){
+			
+			if(filters.equalsIgnoreCase(pubad_faudvalues.toString())){
 				
 				System.out.println("PubAd_FGEO values and Factual_call filter values are matched");
 				ATUReports.add("PubAd_FGEO values and Factual_call filter values are matched", false);	
