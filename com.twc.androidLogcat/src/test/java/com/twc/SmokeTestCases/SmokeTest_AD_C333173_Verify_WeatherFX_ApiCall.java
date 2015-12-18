@@ -79,7 +79,8 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 //			System.out.println("Exception message :: "+e);
 		}		
 		
-		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+//		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+		MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 		WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 		

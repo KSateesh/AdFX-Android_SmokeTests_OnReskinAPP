@@ -74,7 +74,8 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 		
 		Thread.sleep(2000);
 	
-		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+//		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+		MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 		WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 		
@@ -206,11 +207,21 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 			String filters= filterValues.toString().replaceAll(", ", ",");
 			System.out.println("Location_Geopulse_Filter values "+ filters.toString());
 			ATUReports.add("Location_Geopulse_Filter values are present", false);
+
+			System.out.println("Geopulse values count : " + filterValues.size());
+
+			 //Asserting the PubAd_FGEO values and Factual_call filter values
+			for (int counter = 0; counter < filterValues.size(); counter++) {
+				if (pubad_fgeo.contains(filterValues.get(counter))) {
+					// won't run body since can't compare
+					System.out.println(filterValues.get(counter)+" PubAD_FGEO_value is present in the Location_GeoPulse filter values");
+				} else {
+					// System.out.println("This is not valid "+filterValues.get(counter));
+					System.out.println(filterValues.get(counter)+" PubAD_FGEO_value is NOT present in the Location_GeoPulse filter values");
+				}
+			}
 			
-         //Asserting the PubAd_FGEO values and Factual_call filter values
-//			Assert.assertEquals(filters, pubad_fgeo);
-//			if(filters.equalsIgnoreCase(pubad_fgeo)){
-//			if(pubad_fgeo.equalsIgnoreCase(filters)){
+			System.out.println("=====================================================");
 			
 			if(filters.equalsIgnoreCase(pubad_faudvalues.toString())){
 				

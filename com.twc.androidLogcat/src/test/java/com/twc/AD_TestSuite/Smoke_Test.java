@@ -1,8 +1,6 @@
 package com.twc.AD_TestSuite;
 
 
-
-
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,22 +18,19 @@ import com.twc.General.File_Exist;
 import com.twc.General.app_Kill_Relaunch;
 import com.twc.General.setAddress_Location;
 import com.twc.General.toKnowBuildVersion;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333175_HourlyScroll;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily;
+import com.twc.SmokeTestCases.AD_C333180_Daily_While;
+import com.twc.SmokeTestCases.Samsung_AD_C333179_Verify_PullToRefresh;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333172_CleanLaunch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333174_FactualCall;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333174_FactualCall_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333175_Hourly;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333175_Hurricane;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333176_Map;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333177_News;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333179_Verify_PullToRefresh;
-import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day_2;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day;
+import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
-import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule;
-import com.twc.SmokeTestCases.SmokeTest_c334143_CleanLaunch_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
@@ -60,7 +55,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
 
-
 @Listeners({ATUReportsListener.class, MethodListener.class })
 
 @SuppressWarnings("unused")
@@ -69,7 +63,7 @@ public class Smoke_Test extends Driver{
 	{
 		System.setProperty("atu.reporter.config", "./atu.properties"); 
 	}
-	
+		
 		//Pull to Refresh
 	@Test (priority=0, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333179_Verify_AdCall_On_PulltoRefresh() throws ParseException, IOException, InterruptedException
@@ -84,8 +78,8 @@ public class Smoke_Test extends Driver{
 
 		SmokeTest_AD_C333174_FactualCall_RE FactualTest_RE = new SmokeTest_AD_C333174_FactualCall_RE();
 		FactualTest_RE.verify_facualcal_onfresh_launch();
-
 	}
+	
 	//Weather FX API Call == RE
 	@Test(priority=2, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE() throws Exception {
@@ -101,7 +95,6 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch LotameAdTarget = new SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch();
 		LotameAdTarget.Verify_LotameCall_onapp_launch_test();
 	}
-	
 			
 	//Hourly Ad
 	@Test(priority=4, threadPoolSize = 1,invocationCount = 1 )
@@ -111,14 +104,14 @@ public class Smoke_Test extends Driver{
 		hourlyExtend.verify_adpresent_onextendedHourly_page();
 	}
 	
-	//10 Day Ad [Daily Ad]
-	@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
-	public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
+	//10 Day Ad [Daily Ad*]
+		@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
+		public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
 
-		SmokeTest_AD_C333180_10Day tendayExtended = new SmokeTest_AD_C333180_10Day();
-		tendayExtended.verify_adpresent_onextendedTenday_page();
+			SmokeTest_AD_C333180_Daily tendayExtended = new SmokeTest_AD_C333180_Daily();
+			tendayExtended.verify_adpresent_onextendedTenday_page();
 
-	}
+		}
 	
 		//Maps page Ad
 	@Test(priority=6, threadPoolSize = 1,invocationCount = 1)
@@ -138,7 +131,7 @@ public class Smoke_Test extends Driver{
 
 	}
 	
-	//CleanLaunch_Scroll
+	//CleanLaunch
 	@Test(priority=8, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333172_Verify_AdCalls_On_CleanLaunch() throws Exception {
 
@@ -147,37 +140,26 @@ public class Smoke_Test extends Driver{
 
 	}
     
-    //Spotlight Ad on Cold & Flu module
-    @Test(priority=9, threadPoolSize = 1,invocationCount = 1)
-    public void SmokeTest_AD_C33318_HealthModule_ColdFlu_Page() throws Exception {
-        
-        SmokeTest_AD_C33318_HealthModule cold_flu = new SmokeTest_AD_C33318_HealthModule();
-        cold_flu.verify_SpotLightAd_present_on_ColdFlu_section();
-        
-    }
-		
-//	===============
-	
-//	//Weather FX API Call-Full
-//	@Test(priority=2, threadPoolSize = 1,invocationCount = 1)
-//	public void AD_C333173_Verify_WeatherFX_ApiCall() throws Exception {
-//
-//		SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall tendayExtended = new SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall();
-//		tendayExtended.SmokeTest_WFX();
-//   }
-//	
-//	  //Factual FX API Call
-//		@Test(priority=1, threadPoolSize = 1,invocationCount = 1)
-//		public void AD_C333174_FactualCall_On_FreshLaunch() throws Exception {
-//
-//			SmokeTest_AD_C333174_FactualCall FactualTest = new SmokeTest_AD_C333174_FactualCall();
-//			FactualTest.Factual_Test();
-//
-//		}
-//
+    //	===============
+    
+    //	//Weather FX API Call-Full
+    //	@Test(priority=2, threadPoolSize = 1,invocationCount = 1)
+    //	public void AD_C333173_Verify_WeatherFX_ApiCall() throws Exception {
+    //
+    //		SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall tendayExtended = new SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall();
+    //		tendayExtended.SmokeTest_WFX();
+    //   }
+    //
+    //	  //Factual FX API Call
+    //		@Test(priority=1, threadPoolSize = 1,invocationCount = 1)
+    //		public void AD_C333174_FactualCall_On_FreshLaunch() throws Exception {
+    //
+    //			SmokeTest_AD_C333174_FactualCall FactualTest = new SmokeTest_AD_C333174_FactualCall();
+    //			FactualTest.Factual_Test();
+    //
+    //		}
+    //
 
-	
-	
 
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
@@ -203,12 +185,12 @@ public class Smoke_Test extends Driver{
 	public void getBuildVersion() throws Exception {
 
 		// Calling the method to know APP Build Version
-		toKnowBuildVersion getBuildVersion = new toKnowBuildVersion();
-		getBuildVersion.moreOptionsClick();
+	toKnowBuildVersion getBuildVersion = new toKnowBuildVersion();
+	getBuildVersion.moreOptionsClick();
 
 		// Calling the method to Set Address/Location in the APP
-	   //setAddress_Location sa = new setAddress_Location();
-//	  sa.setLocation();
+	    // setAddress_Location sa = new setAddress_Location();
+	    //sa.setLocation();
 	
 	// To print the Device Name and Build Version in Reports
 		String	AndroidVersion = properties.getProperty("platformVersion");
@@ -221,7 +203,7 @@ public class Smoke_Test extends Driver{
 		
 		PropertyFile.property();
 		
-		ATUReports.indexPageDescription = "<h1> Android Smoke Test Report </h1> <br/> <h2> on Build "+ buildVersion + "</h2> <br/> <h2>"+"Executed on " +deviceName+ " OS : ("+AndroidVersion+")"+"</h2>";
+		ATUReports.indexPageDescription = "<h1> Android Smoke Test Report </h1> <br/> <h2> on Build "+ buildVersion + "</h2> <br/> <h2>"+"Executed on " +deviceName+ " with OS : ("+AndroidVersion+")"+"</h2>";
 
 		ATUReports.add("Setting IndexPageDescription : ",false);
 
@@ -248,9 +230,6 @@ public class Smoke_Test extends Driver{
 		movingFiles mf = new movingFiles();
 		mf.movefiles();
 		ATUReports.add("Moving TWC Image and CSS Files.",false);
-
-
 	}
-
 	
 }

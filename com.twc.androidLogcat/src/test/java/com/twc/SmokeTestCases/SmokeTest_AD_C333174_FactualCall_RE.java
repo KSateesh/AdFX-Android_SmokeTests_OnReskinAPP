@@ -51,6 +51,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 			
 			ATUReports.add("Launch the app",false);
 			
+			//Un-Comment the below try catch block,to run this test case as alone	
 			try {
 			//Wait for 20 sec for element presence
 			WebDriverWait wait = new WebDriverWait(Ad, 10);
@@ -66,12 +67,13 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 			Swipe.swipe();
 			
 			} catch (Exception e){
-//				System.out.println("Exception message :: "+e);
+				//System.out.println("Exception message :: "+e);
 			}
 			
 			Thread.sleep(2000);
 					
-			MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+//			MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+			MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 			WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 			
@@ -99,15 +101,14 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 		String FilePath = properties.getProperty("LogFilePath");
 
 		Map<String, String> mapkeys = new HashMap<String, String>();
-
+		StringBuffer sb=null;
 		try {
 			FileInputStream fstream = new FileInputStream(FilePath);
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					fstream));
+			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 			String strLine;
 
 			// / read log line by line ------ strLine = br.readLines(6, 10); /
-			StringBuffer sb = new StringBuffer("");
+		    sb = new StringBuffer("");
 			while ((strLine = br.readLine()) != null) {
 
 				// parse strLine to obtain what you want /
@@ -115,15 +116,27 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				sb.append(strLine);
 
 			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+			Thread.sleep(1000);
 			
 			//Verify the Factual_API_Call is present in Logs
 			String factualCall =null;
-			if (sb.toString().contains("https://location.wfxtriggers.com/geopulse/")) {
 				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
 				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
 				System.out.println("Factual API call is present and the url is : \n"+factualCall);
-				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);
-			}
+				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);	
+			
+//			String factualCall =null;
+//			if (sb.toString().contains("https://location.wfxtriggers.com/geopulse/")) {
+//				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
+//				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
+//				System.out.println("Factual API call is present and the url is : \n"+factualCall);
+//				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);
+//			}
 		
 			List<String> pubad_faudvalues = new ArrayList<String>();
 			List<String> pubad_fgeovalues = new ArrayList<String>();
@@ -142,7 +155,8 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 						mapkeys.put(key[0], key[1]);
 					}
 				}
-								
+			
+			ATUReports.add("Verify the Factual values(FAUD,FGEO) in Feed_1 Call", false);
 				String faudValue=null;
 				String fgeoValue=null;						
 				for (Entry<String, String> entryKeys : mapkeys.entrySet()) {					
@@ -150,39 +164,35 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 					if (entryKeys.getKey().contains("faud")) {
 						faudValue = entryKeys.getValue();
 						Assert.assertNotNull(faudValue);
-						System.out.println("FAUD value is present");
-						System.out.println("faud values are :" + faudValue);
+//						System.out.println("FAUD value is present");
+						System.out.println("faud values are : " + faudValue);
+						ATUReports.add("PubAd_FAUD Values : "+ faudValue,false);
 						pubad_faudvalues.add(faudValue);
 					}
 					// Verify FGEO Value					
 					if (entryKeys.getKey().contains("fgeo")) {
 						fgeoValue = entryKeys.getValue();
 						Assert.assertNotNull(fgeoValue);
-						System.out.println("FGEO value is present");
-						System.out.println("FGEO vaules are :" + fgeoValue);
+//						System.out.println("FGEO value is present");
+						System.out.println("FGEO vaules are : " + fgeoValue);
+						ATUReports.add("PubAd_FGEO Values : "+ fgeoValue,false);
 						pubad_fgeovalues.add(fgeoValue);
 					}
 				}
 			}
 
-			ATUReports.add("Verify the Factual values(FAUD,FGEO) in Feed_1 Call", false);
+	/*		ATUReports.add("Verify the Factual values(FAUD,FGEO) in Feed_1 Call", false);
 			String pubad_faud = pubad_faudvalues.toString();
 			System.out.println("PubAd_FAUD Values "+ pubad_faud.toString());
-			ATUReports.add("FAUD value is present", false);
+			ATUReports.add("PubAd_FAUD Values "+ pubad_faud,false);
+//			ATUReports.add("FAUD value is present", false);
 			
 			String pubad_fgeo = pubad_fgeovalues.toString();
 			System.out.println("PubAd_FGEO Values "+ pubad_fgeo.toString());
-			ATUReports.add("FGEO value is present", false);
-			
-			br.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-
-
-		System.out.println("Verification of FactualCall test case done");
+			ATUReports.add("PubAd_FGEO Values "+ pubad_fgeo,false);
+//			ATUReports.add("FGEO value is present", false);
+    */
+			System.out.println("Verification of FactualCall test case done");
 		
 				
 	}

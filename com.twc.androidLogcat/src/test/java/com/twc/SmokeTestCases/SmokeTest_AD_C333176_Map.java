@@ -23,9 +23,6 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public void verify_adpresent_onextendedMap_page() throws Exception {
 
-		// app kill and relaunch the app
-		// app_Kill_Relaunch.Kill_realaunch();
-
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 
@@ -36,8 +33,8 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 
 		System.out.println("Searching for Radar & Maps module");
 		ATUReports.add("Scroll to Radar & Maps module", false);
-		
-		for (int i = 0; i < dimensions.getHeight(); i++) {
+		int MAX_SWIPES = 10;
+		for (int i = 0; i<MAX_SWIPES; i++) {
 			WebElement maps = null;
 
 			try {

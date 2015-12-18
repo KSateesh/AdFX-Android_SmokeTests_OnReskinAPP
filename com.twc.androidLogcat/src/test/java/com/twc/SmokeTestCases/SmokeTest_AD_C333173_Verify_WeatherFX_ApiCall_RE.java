@@ -65,25 +65,29 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 		
 		ATUReports.add("Launch the app",false);
 		
-		try{
-		//Wait for 20 sec for element presence
-		WebDriverWait wait = new WebDriverWait(Ad, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+		//Un-Comment the below try catch block,to run this test case as alone 
 		
-		//Temperature  Element
-		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
-		System.out.println("Temp : "+el.getText());
+//		try{
+//		//Wait for 20 sec for element presence
+//		WebDriverWait wait = new WebDriverWait(Ad, 10);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+//		
+//		//Temperature  Element
+//		MobileElement el = (MobileElement) Ad.findElementById("com.weather.Weather:id/temperature");
+//		System.out.println("Temp : "+el.getText());
+//		
+//		ATUReports.add("Scroll to Feed-1 Ad",false);
+//		
+//		Swipe.swipe();
+//		Swipe.swipe();
+//		
+//		} catch (Exception e){
+//		//	System.out.println("Exception message : "+e);
+//		}
 		
-		ATUReports.add("Scroll to Feed-1 Ad",false);
-		
-		Swipe.swipe();
-		Swipe.swipe();
-		
-		} catch (Exception e){
-//			System.out.println("Exception message : "+e);
-		}
-		
-		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+		Thread.sleep(2500);
+//		MobileElement AdEle =(MobileElement) Ad.findElementById("com.weather.Weather:id/ad_view_holder");
+		MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 		WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 		
@@ -108,7 +112,7 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 		}
 
 		String FilePath = properties.getProperty("LogFilePath");
-
+		StringBuffer sb=null;
 		try {
 			FileInputStream fstream = new FileInputStream(FilePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -116,23 +120,33 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 			String strLine;
 
 			// / read log line by line ------ strLine = br.readLines(6, 10); /
-			StringBuffer sb = new StringBuffer("");
+		    sb = new StringBuffer("");
 			while ((strLine = br.readLine()) != null) {
 
 				// System.out.println (strLine);
 				sb.append(strLine);
-
-			}
-			
+			  }
+			 br.close();
+	     } catch (Exception e) {
+			e.printStackTrace();
+		 }
 			//Verify the WFX_API_Call is present in Logs
-			String WFX_API_Call =null;
+		    String WFX_API_Call =null;
+		    
+			WFX_API_Call = sb.toString().substring(sb.toString().lastIndexOf("https://triggers.wfxtriggers.com/json/?resp_type=json&acctid=B88159&current=true"));
+			WFX_API_Call = WFX_API_Call.substring(WFX_API_Call.indexOf("https"), WFX_API_Call.indexOf("B88159")+6);
+			System.out.println("WFX API Call call is present and the url is : \n"+WFX_API_Call);
+			ATUReports.add("WFX API Call is present and the url is : \n"+WFX_API_Call,false);
+		
+		
+		/*	String WFX_API_Call =null;
 			if (sb.toString().contains("https://triggers.wfxtriggers.com/json/?")) {
 				WFX_API_Call = sb.toString().substring(sb.toString().lastIndexOf("https://triggers.wfxtriggers.com/json/?resp_type=json&acctid=B88159&current=true"));
 				WFX_API_Call = WFX_API_Call.substring(WFX_API_Call.indexOf("https"), WFX_API_Call.indexOf("B88159")+6);
 				System.out.println("WFX API Call call is present and the url is : \n"+WFX_API_Call);
 				ATUReports.add("WFX API Call is present and the url is : \n"+WFX_API_Call,false);
 			}
-			
+		*/	
 			
 			List<String> wfxtg_values = new ArrayList<String>();
 			ATUReports.add("Verify the WFXTG values in Feed_1 Call",false);
@@ -164,18 +178,12 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 				}
                 pubad_wfxtg =pubad_wfxtgvalues.toString();
 				System.out.println("pubad_wfxtg values are :: "+ pubad_wfxtgvalues.toString());
-				//ATUReports.add("PubAd_WFXTG values :: "+pubad_wfxtg,false);
-				ATUReports.add("WFXTG values are present",false);
+				ATUReports.add("PubAd_WFXTG values :: "+pubad_wfxtg,false);
+//				ATUReports.add("WFXTG values are present",false);
 				
 
 			}
-			br.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Verification of wfxtg test case done");
-
+       	System.out.println("Verification of wfxtg test case done");
+		Thread.sleep(1000);
 	}
 }

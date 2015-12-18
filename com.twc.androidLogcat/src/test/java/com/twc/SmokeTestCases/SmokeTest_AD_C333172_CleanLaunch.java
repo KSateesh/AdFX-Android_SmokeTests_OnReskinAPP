@@ -61,13 +61,13 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 		Dimension dimensions = Ad.manage().window().getSize();
 //		 System.out.println("dimensions :: "+dimensions);
 		
-		try{
-		//Wait for 20 sec for element presence
-		WebDriverWait wait = new WebDriverWait(Ad, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
-		}catch(Exception e){
-			//System.out.println("Error message :: "+e);
-		}
+//		try{
+//		//Wait for 20 sec for element presence
+//		WebDriverWait wait = new WebDriverWait(Ad, 10);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
+//		}catch(Exception e){
+//			//System.out.println("Error message :: "+e);
+//		}
 		 
 		Thread.sleep(1000);
 		ATUReports.add("Scroll the app till end, to verify ad calls(BB,feed_0,feed_1 to feed_n)",false);
@@ -79,6 +79,7 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 			WebElement skiSlopes = null;
 //			MobileElement skiSlopes = null;
 
+			Thread.sleep(1000);
 			try {
 				skiSlopes = (MobileElement) Ad.findElementById("com.weather.Weather:id/ski_title");	
 				
@@ -93,11 +94,13 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 					break;
 
 			} else {
-				System.out.println("Ski Slopes module is NOT present,scrolling down");				
+				System.out.println("Ski Slopes module is NOT present,scrolling down");
+				
 				Swipe.swipe();
 			}
 		}
 		
+//		Thread.sleep(1000);
 		BufferedReader r = new BufferedReader(new FileReader(properties.getProperty("LogFilePath")));
 		
 					String line = "";
@@ -111,19 +114,23 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 					String FilePath = properties.getProperty("LogFilePath");
 		
 					Map<String, String> mapkeys = new HashMap<String, String>();
-		
-					try {
+					
+					StringBuffer sb=null;					
+			    try {
 						FileInputStream fstream = new FileInputStream(FilePath);
 						BufferedReader br = new BufferedReader(new InputStreamReader(
 								fstream));
 						String strLine;
 						// / read log line by line ------ strLine = br.readLines(6, 10); /
-						StringBuffer sb = new StringBuffer("");
+						 sb = new StringBuffer("");
 						while ((strLine = br.readLine()) != null) {
 		
 							sb.append(strLine);
-		
-						}
+						 }						
+			          br.close();
+				    } catch (Exception e) {
+						e.printStackTrace();
+				    }
 						
 						ATUReports.add("Verify the Feed calls data from Log File",false);
 						for(int FeedValue=0;FeedValue<=6;FeedValue++)
@@ -157,22 +164,13 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 								{
 									System.out.println("Verified Feed_"+FeedValue+" call is present");
 									ATUReports.add("Verify that Feed_"+FeedValue+" call is present",false);
-									
+//									Thread.sleep(1000);
 								}
 							}
 		
 					}
-						System.out.println("Verify AdCalls_on_CleanLaunch case ended");
+						System.out.println("Verify AdCalls_on_CleanLaunch case ended");		
 		
-						br.close();
-		
-					} catch (Exception e) {
-						e.printStackTrace();
-		
-					}
-		
-		
-				
 	}
 
 

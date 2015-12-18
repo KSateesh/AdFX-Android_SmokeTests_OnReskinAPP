@@ -30,13 +30,11 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public void verify_adpresent_onextendedHourly_page() throws Exception {
 
-		// app kill and relaunch the app
-		// app_Kill_Relaunch.Kill_realaunch();
-
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 
 		ATUReports.add("Launch the app", false);
+		Thread.sleep(2000);
 
 		// To get the dimensions of the screen
 		Dimension dimensions = Ad.manage().window().getSize();
@@ -47,7 +45,9 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 		System.out.println("Searching for Hourly module");
 		ATUReports.add("Scroll to Hourly module", false);
 
-		for (int i = 0; i < dimensions.getHeight(); i++) {
+		int MAX_SWIPES = 10;
+		
+		for (int i = 0; i < MAX_SWIPES; i++) {
 
 			WebElement hourly = null;
 
