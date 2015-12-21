@@ -37,7 +37,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 		    Driver.property();
 			PropertyFile.property();
 
-			System.out.println("Verification of Factual Cal Test_Case Started");
+			System.out.println("Verification of Factual Call Test_Case Started");
 			
 			String adbPath = properties.getProperty("adbPath");
 			String[] str ={"/bin/bash", "-c", adbPath+" shell setprop log.tag.TwcAd DEBUG"};
@@ -125,7 +125,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 			
 			//Verify the Factual_API_Call is present in Logs
 			String factualCall =null;
-				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
+				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0"));
 				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
 				System.out.println("Factual API call is present and the url is : \n"+factualCall);
 				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);	
@@ -165,8 +165,8 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 						faudValue = entryKeys.getValue();
 						Assert.assertNotNull(faudValue);
 //						System.out.println("FAUD value is present");
-						System.out.println("faud values are : " + faudValue);
-						ATUReports.add("PubAd_FAUD Values : "+ faudValue,false);
+						System.out.println("faud values are :" + faudValue);
+						ATUReports.add("PubAd_FAUD Values "+ faudValue,false);
 						pubad_faudvalues.add(faudValue);
 					}
 					// Verify FGEO Value					
@@ -174,8 +174,8 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 						fgeoValue = entryKeys.getValue();
 						Assert.assertNotNull(fgeoValue);
 //						System.out.println("FGEO value is present");
-						System.out.println("FGEO vaules are : " + fgeoValue);
-						ATUReports.add("PubAd_FGEO Values : "+ fgeoValue,false);
+						System.out.println("FGEO vaules are :" + fgeoValue);
+						ATUReports.add("PubAd_FGEO Values "+ fgeoValue,false);
 						pubad_fgeovalues.add(fgeoValue);
 					}
 				}

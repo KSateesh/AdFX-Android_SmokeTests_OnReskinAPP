@@ -133,37 +133,6 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				}
 				
 					Thread.sleep(1000);
-					//Verify the Lotame_API_Call is present in Logs
-				/* 	String lotameCall =null;
-					String BCP_lotameCall =null;
-			 try{
-				  if (sb.toString().contains("https://ad.crwdcntrl.net/")) {
-						lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
-						lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
-						System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
-						ATUReports.add("Lotame call is present and the url is : \n"+lotameCall,false);
-					 }
-				} catch(Exception e){
-					if (sb.toString().contains("https://bcp.crwdcntrl.net/")) {
-						BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
-						BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
-						System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
-						ATUReports.add("BCP_Lotame call is present and the url is : \n"+BCP_lotameCall,false);
-					  }
-				} */
-			  
-			 //Verify the Lotame_API_Call is present in Logs
-			  try{
-					String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
-					lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
-					System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
-				 }
-			  catch(Exception e){
-
-					String BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
-					BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
-					System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
-				  }
 									
 					String[] arrays;
 					String[] key;
@@ -194,6 +163,21 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 						
 					}
 					
+					//Verify the Lotame_API_Call is present in Logs
+            
+				  
+				  try{
+						String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
+						lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
+						System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
+					 }
+				  catch(Exception e){
+						String BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
+						BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
+						System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
+					  }
+				  
+				 
 		               Thread.sleep(2000);
 						// Capturing the Lotame Call Data (bcp.crwdcntrl.net)
 						if(sb.toString().contains("response from server is {"+'"'+"Profile")){
@@ -222,6 +206,7 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			   System.out.println("Lotame_Audience id value is : " + id);
 				    			   idvalues.add(id);
 				    			}
+				    			
 				    			ATUReports.add("Verify Audience values from Lotame API call",false);
 				    			System.out.println("Lotame call Audience values are :: " + idvalues.toString());
 				    			String actual = idvalues.toString().replace("[", "").replace("]", "");
@@ -233,11 +218,27 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				    			String expected = pubad_sgvalues.toString().replace("[", "").replace("]", "");
 				    			ATUReports.add("PubAd_SG values are :: "+expected,false);
 //				    			ATUReports.add("PubAd_SG values are present in Feed_1 Call",false);
-				    			
-               //Asserting the PubAd_SG values with Lotame Call id values of Audiences object of JSON Object
-					Assert.assertEquals(actual, expected);
-					System.out.println("PubAd_SG values and Lotame call Audience values are matched");
-					ATUReports.add("PubAd_SG and Lotame call values are matched",false);				    
+
+				// Asserting the PubAd_SG values with Lotame Call id values of Audiences object of JSON Object
+	    	/* Assert.assertEquals(actual, expected);
+				 System.out.println("PubAd_SG values and Lotame call Audience values are matched");
+				 ATUReports.add("PubAd_SG and Lotame call values are matched",false);	   			
+				 System.out.println("lotame values count : "+idvalues.size());
+			*/  			
+								for (int counter = 0; counter < idvalues.size(); counter++) { 
+								    if (expected.contains(idvalues.get(counter))) {
+
+								    	System.out.println(idvalues.get(counter)+" PubAD_SG_value is present in the Lotame_API Call");
+								    	ATUReports.add("PubAD_SG_value "+idvalues.get(counter)+"is present in the Lotame_API Call",false);		
+								    }
+								    else{
+								    	//System.out.println("This is not valid "+filterValues.get(counter));
+								    	System.out.println(idvalues.get(counter)+" PubAD_SG_value is NOT present in the Lotame_API Call");
+								    	ATUReports.add("PubAD_SG_value "+idvalues.get(counter)+"is NOT present in the Lotame_API Call",false);
+								    	Assert.fail();
+								    }
+								} 
+			    
 						}
 					}
 					

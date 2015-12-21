@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import junit.framework.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -115,7 +117,7 @@ public class SmokeTest_AD_C333179_Verify_PullToRefresh extends Driver {
 			} else {
 				System.out.println("Branded Background call is NOT present");
 				ATUReports.add("Branded Background call is NOT present", false);
-
+				Assert.fail();
 			}
 
 			System.out.println("PulltoRefresh test case is done");			

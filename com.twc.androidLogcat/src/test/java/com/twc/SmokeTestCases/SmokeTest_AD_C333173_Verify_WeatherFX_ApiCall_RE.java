@@ -36,19 +36,13 @@ import com.twc.driver.PropertyFile;
 @SuppressWarnings("unused")
 public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE extends Driver{
 	
-	public static String wfxtg ;
-	public static List<String> wfxcontainer;
-	
-	public static List<String>  Adwfxdata ;
-	public static String wfxids = null;
-	public static String Currentlist[] = null;
-	
 	@SuppressWarnings("deprecation")
 	public void verify_WeatherFX_Apicall_On_FreshLaunch() throws ParseException, Exception {
 		//reading file from Property file
 //		 Driver.property();
 //			PropertyFile.property();
 
+		
 		System.out.println("Verification of WeatherFX Call Test_Case Started");
 		
 		String adbPath = properties.getProperty("adbPath");
