@@ -163,19 +163,19 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 						
 					}
 					
-					//Verify the Lotame_API_Call is present in Logs
-            
-				  
-				  try{
-						String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
-						lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
-						System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
-					 }
-				  catch(Exception e){
-						String BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
-						BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
-						System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
-					  }
+        //Verify the Lotame_API_Call is present in Logs
+        try{
+            String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
+            lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
+            System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
+            ATUReports.add("Ad_Lotame call is present and the url is : \n"+lotameCall,false);
+        }
+        catch(Exception e){
+            String BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
+            BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
+            System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
+            ATUReports.add("BCP_lotame call is present and the url is : \n"+BCP_lotameCall,false);
+						  }
 				  
 				 
 		               Thread.sleep(2000);

@@ -129,15 +129,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
 				System.out.println("Factual API call is present and the url is : \n"+factualCall);
 				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);	
-			
-//			String factualCall =null;
-//			if (sb.toString().contains("https://location.wfxtriggers.com/geopulse/")) {
-//				factualCall = sb.toString().substring(sb.toString().lastIndexOf("https://location.wfxtriggers.com/geopulse/7620026f-cfb6-4d0c-9f8e-434ff0cd34d0?audience=true&proximity=true"));
-//				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
-//				System.out.println("Factual API call is present and the url is : \n"+factualCall);
-//				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);
-//			}
-		
+
 			List<String> pubad_faudvalues = new ArrayList<String>();
 			List<String> pubad_fgeovalues = new ArrayList<String>();
 			
@@ -148,7 +140,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				String[] arrays = req.split(", ");
 				System.out.println("Verifying the " + req);
 				for (String keys : arrays) {
-					System.out.println(keys);
+					//System.out.println(keys);
 					if (keys.contains("=")) {
 						String[] key = keys.split("=");
 						// System.out.println(key[0] + "---"+key[1]);
@@ -181,17 +173,7 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				}
 			}
 
-	/*		ATUReports.add("Verify the Factual values(FAUD,FGEO) in Feed_1 Call", false);
-			String pubad_faud = pubad_faudvalues.toString();
-			System.out.println("PubAd_FAUD Values "+ pubad_faud.toString());
-			ATUReports.add("PubAd_FAUD Values "+ pubad_faud,false);
-//			ATUReports.add("FAUD value is present", false);
-			
-			String pubad_fgeo = pubad_fgeovalues.toString();
-			System.out.println("PubAd_FGEO Values "+ pubad_fgeo.toString());
-			ATUReports.add("PubAd_FGEO Values "+ pubad_fgeo,false);
-//			ATUReports.add("FGEO value is present", false);
-    */
+	
 			System.out.println("Verification of FactualCall test case done");
 		
 				
