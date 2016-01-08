@@ -23,18 +23,17 @@ public class SmokeTest_AD_C333177_News extends Driver{
 	@SuppressWarnings({ "deprecation", "unused" })
 	public void verify_adpresent_onextendedNews_page() throws Exception
 	{
-	
+		//Set the Native Context
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 		
 		ATUReports.add("Launch the app",false);
-		//To get the dimensions of the screen
-		Dimension dimensions = Ad.manage().window().getSize();
-		//System.out.println("dimensions :: "+dimensions); //7
 		
 		System.out.println("Searching for News module");
 		ATUReports.add("Scroll to News module",false);
+		
 		int MAX_SWIPES = 10;
+		
 		for (int i = 0; i<MAX_SWIPES; i++) {
 
 			WebElement news = null;
@@ -55,8 +54,16 @@ public class SmokeTest_AD_C333177_News extends Driver{
                     //Click on News image 
 					Ad.findElementById("com.weather.Weather:id/grid_item_1").click();
 					
+					String extendNews = Ad.findElementById("toolbar_title").getText(); 
+					System.out.println("Text : "+ extendNews);
+					if(extendNews.contains("News"))
+					{
+						System.out.println("On Extended News page");
+					}
+					
+					//Verify the Ad on News Page
 					MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
-					WebDriverWait wait1 = new WebDriverWait(Ad, 4);
+					WebDriverWait wait1 = new WebDriverWait(Ad, 10);
 					wait1.until(ExpectedConditions.visibilityOf(AdEle));
 					if(AdEle.isDisplayed())
 					{

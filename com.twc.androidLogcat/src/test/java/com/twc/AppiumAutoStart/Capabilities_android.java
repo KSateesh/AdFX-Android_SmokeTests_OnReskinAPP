@@ -1,17 +1,16 @@
 package com.twc.AppiumAutoStart;
 
-
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
-
-
 
 @SuppressWarnings("unused")
 public class Capabilities_android extends Driver {
@@ -19,8 +18,12 @@ public class Capabilities_android extends Driver {
 	@SuppressWarnings({ "rawtypes" })
 	public void dcap() throws InterruptedException, IOException {
 
-	 //  Appium auto start and Killing ADB server
-		
+		//Read data from PropertyFile
+			Driver.property();
+			PropertyFile.property();
+
+        //  Appium auto start and Killing ADB server
+		     
 		Start_Stop_AppiumServer as = new Start_Stop_AppiumServer();
 		
 		System.out.println("Stopping the ADB server");
@@ -29,7 +32,18 @@ public class Capabilities_android extends Driver {
 		Thread.sleep(9000);
 		
 		System.out.println("===================================");
-		
+
+        //To Uninstall the APK
+		 System.out.println("Uninstall the APP");
+	
+		 String[] uninstall ={"/bin/bash", "-c",  properties.getProperty("adbPath")+" shell pm uninstall com.weather.Weather"};
+	     Process  apk_uninstall = Runtime.getRuntime().exec(uninstall);
+        
+	     Thread.sleep(9000);
+         System.out.println("APP Uninstallation is done");
+        
+        System.out.println("===================================");
+	    		
 		System.out.println("Stopping the appium server");
 		as.stopAppiumServer();
 		System.out.println("Appium server is stopped");
@@ -40,12 +54,6 @@ public class Capabilities_android extends Driver {
 		as.startAppiumServer();
 		System.out.println("Appium server is started and running");
 		Thread.sleep(50000);
-
-
-		//Read data from PropertyFile
-		
-		Driver.property();
-		PropertyFile.property();
 		
         //Setting the Capabilities 
 		
@@ -68,8 +76,6 @@ public class Capabilities_android extends Driver {
 		//System.out.println("logfile is ::"properties.getProperty("LogFilePath"));
 
 		System.out.println("Capabilities are launched");
-
-
 
 	}
 }

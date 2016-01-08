@@ -15,6 +15,7 @@ import com.twc.AppiumAutoStart.Capabilities_android;
 import com.twc.AppiumAutoStart.movingFiles;
 import com.twc.General.DeleteFile;
 import com.twc.General.File_Exist;
+import com.twc.General.TestMode;
 import com.twc.General.app_Kill_Relaunch;
 import com.twc.General.setAddress_Location;
 import com.twc.General.toKnowBuildVersion;
@@ -30,8 +31,11 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333177_News;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333179_Verify_PullToRefresh;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_10Day;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily;
+import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily_15Days;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule_Allergy;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
 
@@ -63,15 +67,15 @@ public class Smoke_Test extends Driver{
 	{
 		System.setProperty("atu.reporter.config", "./atu.properties"); 
 	}
-		
-		//Pull to Refresh
-	@Test (priority=0, threadPoolSize = 1,invocationCount = 1)
+
+	  //Pull To Refresh
+	@Test(priority=0, threadPoolSize = 1,invocationCount = 1)	
 	public void AD_C333179_Verify_AdCall_On_PulltoRefresh() throws ParseException, IOException, InterruptedException
 	{
 		SmokeTest_AD_C333179_Verify_PullToRefresh pulltorefresh = new SmokeTest_AD_C333179_Verify_PullToRefresh();
 		pulltorefresh.Verify_PulltoRefresh();
 	}
-	
+
 	  //Factual FX API Call == RE
 	@Test(priority=1, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333174_FactualCall_On_FreshLaunch_RE() throws Exception {
@@ -95,7 +99,7 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch LotameAdTarget = new SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch();
 		LotameAdTarget.Verify_LotameCall_onapp_launch_test();
 	}
-			
+
 	//Hourly Ad
 	@Test(priority=4, threadPoolSize = 1,invocationCount = 1 )
 	public void AD_C333175_Verify_Ad_Present_On_HourlyExtended_page() throws Exception {
@@ -103,16 +107,16 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333175_Hourly hourlyExtend = new SmokeTest_AD_C333175_Hourly();
 		hourlyExtend.verify_adpresent_onextendedHourly_page();
 	}
-	
-	//10 Day Ad [Daily Ad*]
+		
+		//Daily Ad [15Days Button]
 		@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
 		public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
 
-			SmokeTest_AD_C333180_Daily tendayExtended = new SmokeTest_AD_C333180_Daily();
-			tendayExtended.verify_adpresent_onextendedTenday_page();
-
-		}
+		SmokeTest_AD_C333180_Daily_15Days tendayExtended = new SmokeTest_AD_C333180_Daily_15Days();
+		tendayExtended.verify_adpresent_onextendedTenday_page();
 	
+		}
+    
 		//Maps page Ad
 	@Test(priority=6, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333176_Verify_Ad_Present_On_MapsExtended_page() throws Exception {
@@ -139,28 +143,7 @@ public class Smoke_Test extends Driver{
 		cleanLaunch.CleanLaunch_launch();
 
 	}
-    
-    //	===============
-    
-    //	//Weather FX API Call-Full
-    //	@Test(priority=2, threadPoolSize = 1,invocationCount = 1)
-    //	public void AD_C333173_Verify_WeatherFX_ApiCall() throws Exception {
-    //
-    //		SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall tendayExtended = new SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall();
-    //		tendayExtended.SmokeTest_WFX();
-    //   }
-    //
-    //	  //Factual FX API Call
-    //		@Test(priority=1, threadPoolSize = 1,invocationCount = 1)
-    //		public void AD_C333174_FactualCall_On_FreshLaunch() throws Exception {
-    //
-    //			SmokeTest_AD_C333174_FactualCall FactualTest = new SmokeTest_AD_C333174_FactualCall();
-    //			FactualTest.Factual_Test();
-    //
-    //		}
-    //
-
-
+ 		
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
 		
@@ -185,14 +168,14 @@ public class Smoke_Test extends Driver{
 	public void getBuildVersion() throws Exception {
 
 		// Calling the method to know APP Build Version
-	toKnowBuildVersion getBuildVersion = new toKnowBuildVersion();
-	getBuildVersion.moreOptionsClick();
+		toKnowBuildVersion getBuildVersion = new toKnowBuildVersion();
+		getBuildVersion.moreOptionsClick();
 
 		// Calling the method to Set Address/Location in the APP
 	    // setAddress_Location sa = new setAddress_Location();
 	    //sa.setLocation();
 	
-	// To print the Device Name and Build Version in Reports
+	    //To print the Device Name and Build Version in Reports
 		String	AndroidVersion = properties.getProperty("platformVersion");
 
 		String deviceName = properties.getProperty("deviceName");

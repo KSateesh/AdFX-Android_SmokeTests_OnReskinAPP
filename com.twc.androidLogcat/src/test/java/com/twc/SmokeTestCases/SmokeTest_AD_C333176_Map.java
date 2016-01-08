@@ -23,14 +23,12 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public void verify_adpresent_onextendedMap_page() throws Exception {
 
+		//Set the Native Context
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 
 		ATUReports.add("Launch the app", false);
-		// To get the dimensions of the screen
-		Dimension dimensions = Ad.manage().window().getSize();
-		// System.out.println("dimensions :: "+dimensions); //4
-
+		
 		System.out.println("Searching for Radar & Maps module");
 		ATUReports.add("Scroll to Radar & Maps module", false);
 		int MAX_SWIPES = 10;
@@ -52,6 +50,14 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 				// Ad.findElementByAccessibilityId("Radar Map").click();
 				Ad.findElementByName("Radar & Maps").click();
 
+				
+				WebElement extendMaps = Ad.findElementById("maps_play_pause"); 
+				
+				if(extendMaps.isDisplayed())
+				{
+					System.out.println("On Extended Maps page");
+				}
+				//Verify the Ad on Extended Map page
 				MobileElement AdEle = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
 				wait1.until(ExpectedConditions.visibilityOf(AdEle));

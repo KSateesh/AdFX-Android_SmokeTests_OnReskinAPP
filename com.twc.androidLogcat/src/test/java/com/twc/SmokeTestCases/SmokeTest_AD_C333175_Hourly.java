@@ -30,15 +30,11 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public void verify_adpresent_onextendedHourly_page() throws Exception {
 
+		//Set the Native Context
 		String originalContext = Ad.getContext();
 		Ad.context("NATIVE_APP");
 
 		ATUReports.add("Launch the app", false);
-		Thread.sleep(2000);
-
-		// To get the dimensions of the screen
-		Dimension dimensions = Ad.manage().window().getSize();
-		// System.out.println("dimensions :: "+dimensions);
 
 		Thread.sleep(2000);
 
@@ -64,10 +60,18 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 				System.out.println("Hourly module is displayed and tap on the same");
 				ATUReports.add("Hourly module is displayed and tap on the same",false);
 
-				Ad.findElementById("com.weather.Weather:id/hourly_title_textview").click();
-				
 				// Ad.findElementByName("HOURLY").click();
-
+				Ad.findElementById("com.weather.Weather:id/hourly_title_textview").click();
+						
+				String extendhourly = Ad.findElementById("toolbar_title").getText(); //com.weather.Weather:id/toolbar_title
+				System.out.println("Text : "+extendhourly);
+				if(extendhourly.contains("Hourly"))
+				{
+					System.out.println("On Extended Hourly page");
+				}
+				
+        
+				//Verify the Ad on Extended Hourly page
 				MobileElement extendeHourlyAd = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 				WebDriverWait wait1 = new WebDriverWait(Ad, 4);
