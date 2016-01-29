@@ -39,7 +39,7 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 	public void CleanLaunch_launch() throws Exception
 //	public static void main(String[] args) throws IOException
 	{
-	
+		//Reading data from Property file
 		Driver.property();
 		PropertyFile.property();
 		
@@ -57,44 +57,37 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
         
         ATUReports.add("Launch the app",false);
 		Thread.sleep(1000);
-		
-		Dimension dimensions = Ad.manage().window().getSize();
-//		 System.out.println("dimensions :: "+dimensions);
-		
-//		try{
-//		//Wait for 20 sec for element presence
-//		WebDriverWait wait = new WebDriverWait(Ad, 10);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.weather.Weather:id/temperature")));
-//		}catch(Exception e){
-//			//System.out.println("Error message :: "+e);
-//		}
-		 
-		Thread.sleep(1000);
+	
 		ATUReports.add("Scroll the app till end, to verify ad calls(BB,feed_0,feed_1 to feed_n)",false);
-		System.out.println("Searching for SkiSlopes module to stop the scrolling");	
+		System.out.println("Searching for Ski module to stop the scrolling");	
 		
 		for(int FeedValue=1;FeedValue<=12;FeedValue++)
 		{
-			
-			WebElement skiSlopes = null;
-//			MobileElement skiSlopes = null;
+			String	skiSlopesText=null;
+			WebElement	skiSlopes=null;
 
-			Thread.sleep(1000);
+			Thread.sleep(4000);
+
+		
 			try {
-				skiSlopes = (MobileElement) Ad.findElementById("com.weather.Weather:id/ski_title");	
-				
-			    } catch (Exception e) {
-				    // System.out.println(e);	
-			      }
 
-			if (skiSlopes!= null && skiSlopes.isDisplayed()) {
+				skiSlopes = Ad.findElementById("com.weather.Weather:id/ski_module_header");
+
+            } catch (Exception e) {
+				    // System.out.println(e);	
+
+            }
+            
+            if (skiSlopes!=null && skiSlopes.isDisplayed()) {
 				
-				System.out.println("Ski Slopes module is present");				
+				 System.out.println("Ski module is present");
+				
 			     Swipe.swipe();
-					break;
+			     
+			     break;
 
 			} else {
-				System.out.println("Ski Slopes module is NOT present,scrolling down");
+				System.out.println("Ski module is NOT present,scrolling down");
 				
 				Swipe.swipe();
 			}
@@ -151,7 +144,7 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 							{
 								System.out.println("Branded Background call is NOT present");
 								ATUReports.add("Branded Background call is NOT present",false);
-								
+								Assert.fail();
 							}
 		
 						}else

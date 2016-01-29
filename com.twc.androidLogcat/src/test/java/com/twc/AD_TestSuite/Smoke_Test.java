@@ -5,12 +5,10 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-
 import atu.testng.reports.ATUReports;
 import atu.testng.reports.listeners.ATUReportsListener;
 import atu.testng.reports.listeners.ConfigurationListener;
 import atu.testng.reports.listeners.MethodListener;
-
 import com.twc.AppiumAutoStart.Capabilities_android;
 import com.twc.AppiumAutoStart.movingFiles;
 import com.twc.General.DeleteFile;
@@ -19,8 +17,7 @@ import com.twc.General.TestMode;
 import com.twc.General.app_Kill_Relaunch;
 import com.twc.General.setAddress_Location;
 import com.twc.General.toKnowBuildVersion;
-import com.twc.SmokeTestCases.AD_C333180_Daily_While;
-import com.twc.SmokeTestCases.Samsung_AD_C333179_Verify_PullToRefresh;
+import com.twc.SmokeTestCases.AD_C333172_CleanLaunch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333172_CleanLaunch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333174_FactualCall;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE;
@@ -34,24 +31,23 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333180_Daily_15Days;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall;
-import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule_ColdFlu;
 import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule_Allergy;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
-
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-
 import io.appium.java_client.AppiumDriver;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import org.apache.commons.io.FileUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
@@ -68,6 +64,7 @@ public class Smoke_Test extends Driver{
 		System.setProperty("atu.reporter.config", "./atu.properties"); 
 	}
 
+//	/*  
 	  //Pull To Refresh
 	@Test(priority=0, threadPoolSize = 1,invocationCount = 1)	
 	public void AD_C333179_Verify_AdCall_On_PulltoRefresh() throws ParseException, IOException, InterruptedException
@@ -75,7 +72,7 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333179_Verify_PullToRefresh pulltorefresh = new SmokeTest_AD_C333179_Verify_PullToRefresh();
 		pulltorefresh.Verify_PulltoRefresh();
 	}
-
+	
 	  //Factual FX API Call == RE
 	@Test(priority=1, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333174_FactualCall_On_FreshLaunch_RE() throws Exception {
@@ -99,7 +96,7 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch LotameAdTarget = new SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch();
 		LotameAdTarget.Verify_LotameCall_onapp_launch_test();
 	}
-
+			
 	//Hourly Ad
 	@Test(priority=4, threadPoolSize = 1,invocationCount = 1 )
 	public void AD_C333175_Verify_Ad_Present_On_HourlyExtended_page() throws Exception {
@@ -107,16 +104,15 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333175_Hourly hourlyExtend = new SmokeTest_AD_C333175_Hourly();
 		hourlyExtend.verify_adpresent_onextendedHourly_page();
 	}
-		
-		//Daily Ad [15Days Button]
-		@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
-		public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
+	
+	//Daily Ad [15Days Button]
+	@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
+	public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
 
 		SmokeTest_AD_C333180_Daily_15Days tendayExtended = new SmokeTest_AD_C333180_Daily_15Days();
 		tendayExtended.verify_adpresent_onextendedTenday_page();
 	
-		}
-    
+	}
 		//Maps page Ad
 	@Test(priority=6, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333176_Verify_Ad_Present_On_MapsExtended_page() throws Exception {
@@ -143,7 +139,26 @@ public class Smoke_Test extends Driver{
 		cleanLaunch.CleanLaunch_launch();
 
 	}
- 		
+
+    //Health Module - Cold & Flu Section
+    @Test(priority=9, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C33318_HealthModule_Cold_Flu() throws Exception {
+        
+        SmokeTest_AD_C33318_HealthModule_ColdFlu cold_flu = new SmokeTest_AD_C33318_HealthModule_ColdFlu();
+        cold_flu.verify_SpotLightAd_present_on_ColdFlu_section();
+        
+    }
+   
+    //Health Module - Allergy Section
+    @Test(priority=10, threadPoolSize = 1,invocationCount = 1)
+    public void AD_C33318_HealthModule_Allergy() throws Exception {
+
+        SmokeTest_AD_C33318_HealthModule_Allergy allergy = new SmokeTest_AD_C33318_HealthModule_Allergy();
+        allergy.verify_SpotLightAd_present_on_ColdFlu_section();
+    }
+		
+		
+    
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
 		
@@ -161,19 +176,20 @@ public class Smoke_Test extends Driver{
 		} else {
 			System.out.println("File not exist");
 		}
+		
 	}
 	
 	@SuppressWarnings("deprecation")
 	@BeforeClass
 	public void getBuildVersion() throws Exception {
-
+		
 		// Calling the method to know APP Build Version
 		toKnowBuildVersion getBuildVersion = new toKnowBuildVersion();
 		getBuildVersion.moreOptionsClick();
 
 		// Calling the method to Set Address/Location in the APP
-	    // setAddress_Location sa = new setAddress_Location();
-	    //sa.setLocation();
+	  // setAddress_Location sa = new setAddress_Location();
+     // sa.setLocation();
 	
 	    //To print the Device Name and Build Version in Reports
 		String	AndroidVersion = properties.getProperty("platformVersion");

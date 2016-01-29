@@ -44,18 +44,24 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 			}
 
 			if (maps != null && maps.isDisplayed()) {
+				
 				System.out.println("Radar and Maps module is present and tap on Map Image");
+				
 				ATUReports.add("Radar and Maps module is present and tap on Map Image",false);
 				
-				// Ad.findElementByAccessibilityId("Radar Map").click();
+				try{
 				Ad.findElementByName("Radar & Maps").click();
-
-				
-				WebElement extendMaps = Ad.findElementById("maps_play_pause"); 
+				}catch(Exception e){
+//					Ad.findElementById("map_module_thumbnail").click();
+//					Ad.findElementByClassName("android.widget.ImageView").click();
+					Ad.findElementByAccessibilityId("Radar Map").click();
+				}
+				WebElement extendMaps = Ad.findElementById("maps_play_pause"); //com.weather.Weather:id/toolbar_title
 				
 				if(extendMaps.isDisplayed())
 				{
 					System.out.println("On Extended Maps page");
+					ATUReports.add("On Extended Maps page",false);
 				}
 				//Verify the Ad on Extended Map page
 				MobileElement AdEle = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
@@ -68,8 +74,9 @@ public class SmokeTest_AD_C333176_Map extends Driver {
 					ATUReports.add("Ad is present on Extended Radar & Maps page",false);
 					
 					// Clicking back button
-					WebElement backButton = Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.ImageButton[1]");
-					backButton.click();
+//					WebElement backButton = Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.ImageButton[1]");
+//					backButton.click();
+					Ad.findElementByClassName("android.widget.ImageButton").click();
 					Thread.sleep(2000);
 				}
 				break;

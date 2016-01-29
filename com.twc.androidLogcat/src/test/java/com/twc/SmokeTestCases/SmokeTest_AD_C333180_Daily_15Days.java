@@ -58,9 +58,12 @@ public class SmokeTest_AD_C333180_Daily_15Days extends Driver {
 				if(extendDaily.contains("Daily"))
 				{
 					System.out.println("On Extended Daily page");
+					ATUReports.add("On Extended Daily page",false);
 				}
 
-				MobileElement AdEle = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
+//				MobileElement AdEle = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
+				MobileElement AdEle = (MobileElement) Ad.findElementByClassName("android.view.View");
+				
 				WebDriverWait wait1 = new WebDriverWait(Ad, 6);
 				wait1.until(ExpectedConditions.visibilityOf(AdEle));
 
@@ -70,7 +73,8 @@ public class SmokeTest_AD_C333180_Daily_15Days extends Driver {
 					Thread.sleep(2000);
 
 					// Clicking back button
-					Ad.findElementByAccessibilityId("Navigate up").click();
+//					Ad.findElementByAccessibilityId("Navigate up").click();
+					Ad.findElementByClassName("android.widget.ImageButton").click();
 					break;
 				} else {
 					System.out.println("Ad is NOT present on Extended_Daily_page");

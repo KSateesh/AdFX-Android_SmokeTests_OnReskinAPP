@@ -53,12 +53,16 @@ public class SmokeTest_AD_C333177_News extends Driver{
 				
                     //Click on News image 
 					Ad.findElementById("com.weather.Weather:id/grid_item_1").click();
+//				    Ad.findElementByAccessibilityId("Small video thumbnail").click();
 					
-					String extendNews = Ad.findElementById("toolbar_title").getText(); 
+					//WebDriverWait wait = new WebDriverWait(Ad, 10);
+					//wait.until(ExpectedConditions.presenceOfElementLocated(By.className("android.widget.ImageButton")));
+					String extendNews = Ad.findElementById("toolbar_title").getText(); //com.weather.Weather:id/toolbar_title
 					System.out.println("Text : "+ extendNews);
 					if(extendNews.contains("News"))
 					{
 						System.out.println("On Extended News page");
+						ATUReports.add("On Extended News page",false);
 					}
 					
 					//Verify the Ad on News Page
@@ -71,7 +75,8 @@ public class SmokeTest_AD_C333177_News extends Driver{
 						ATUReports.add("Ad is present on Extended News page",false);
 						Thread.sleep(2000);
 						// Clicking back button
-						Ad.findElementByAccessibilityId("Navigate up").click();
+//						Ad.findElementByAccessibilityId("Navigate up").click();
+						Ad.findElementByClassName("android.widget.ImageButton").click();
 					
 				    }break;
 

@@ -68,9 +68,12 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 				if(extendhourly.contains("Hourly"))
 				{
 					System.out.println("On Extended Hourly page");
+					ATUReports.add("On Extended Hourly page",false);
 				}
 				
-        
+				//WebDriverWait wait = new WebDriverWait(Ad, 10);
+				//wait.until(ExpectedConditions.presenceOfElementLocated(By.className("android.widget.ImageButton")));
+				
 				//Verify the Ad on Extended Hourly page
 				MobileElement extendeHourlyAd = (MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]/android.widget.FrameLayout[1]/android.view.View[1]");
 
@@ -86,7 +89,8 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 					Thread.sleep(2000);
 
 					// Clicking back button
-					Ad.findElementByAccessibilityId("Navigate up").click();
+//					Ad.findElementByAccessibilityId("Navigate up").click();
+					Ad.findElementByClassName("android.widget.ImageButton").click();
 					break;
 				}
 
