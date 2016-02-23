@@ -33,16 +33,16 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 	@SuppressWarnings("deprecation")
 	public void verify_facualcal_onfresh_launch() throws InterruptedException, IOException
 	{
-		//Reading file from Property file
+		//Object creation to Read data from 'DataFile_Property' file
 		    Driver.property();
 			PropertyFile.property();
 
 			System.out.println("Verification of Factual Call Test_Case Started");
 			
+			//Run the 'Debug' and 'Write logs to LogFile' Command
 			String adbPath = properties.getProperty("adbPath");
 			String[] str ={"/bin/bash", "-c", adbPath+" shell setprop log.tag.TwcAd DEBUG"};
-			Process p = Runtime.getRuntime().exec(str);
-			
+			Process p = Runtime.getRuntime().exec(str);	
 			System.out.println("Debug command is done");
 		
 			String[] str1 ={"/bin/bash", "-c", adbPath+" -d logcat -v time >> "+properties.getProperty("LogFilePath")};
@@ -86,8 +86,8 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 			}
 
 			Thread.sleep(2000);
-		//Reading the log file for feed_1 to verify PubAd Faud and Fgeo value	
-	
+			
+			//Read logs from LogFile for feed_1 to verify PubAd_Call Faud and Fgeo values	
 		BufferedReader r = new BufferedReader(new FileReader(properties.getProperty("LogFilePath")));
 
 		String line = "";
@@ -95,7 +95,9 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 
 		while((line=r.readLine()) != null)
 		{
-			System.out.println("Sys data is ::"+line);
+			
+		   System.out.println("Sys data is ::"+line);
+				
 		}
 
 		String FilePath = properties.getProperty("LogFilePath");
@@ -129,7 +131,8 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 				factualCall = factualCall.substring(factualCall.indexOf("http"), factualCall.indexOf("proximity")+14);
 				System.out.println("Factual API call is present and the url is : \n"+factualCall);
 				ATUReports.add("Factual API Call is present and the url is : \n"+factualCall,false);	
-
+		
+				//Verify FAUD and FGEO values of Feed-1 PubAd call
 			List<String> pubad_faudvalues = new ArrayList<String>();
 			List<String> pubad_fgeovalues = new ArrayList<String>();
 			
@@ -156,24 +159,32 @@ public class SmokeTest_AD_C333174_FactualCall_RE extends Driver {
 					if (entryKeys.getKey().contains("faud")) {
 						faudValue = entryKeys.getValue();
 						Assert.assertNotNull(faudValue);
-//						System.out.println("FAUD value is present");
-						System.out.println("faud values are :" + faudValue);
-						ATUReports.add("PubAd_FAUD Values "+ faudValue,false);
+						System.out.println("faud values are : " + faudValue);
+						ATUReports.add("PubAd_FAUD Values :: "+ faudValue,false);
 						pubad_faudvalues.add(faudValue);
 					}
 					// Verify FGEO Value					
 					if (entryKeys.getKey().contains("fgeo")) {
 						fgeoValue = entryKeys.getValue();
 						Assert.assertNotNull(fgeoValue);
-//						System.out.println("FGEO value is present");
-						System.out.println("FGEO vaules are :" + fgeoValue);
-						ATUReports.add("PubAd_FGEO Values "+ fgeoValue,false);
+						System.out.println("FGEO vaules are : " + fgeoValue);
+						ATUReports.add("PubAd_FGEO Values :: "+ fgeoValue,false);
 						pubad_fgeovalues.add(fgeoValue);
 					}
 				}
 			}
 
-	
+	/*		ATUReports.add("Verify the Factual values(FAUD,FGEO) in Feed_1 Call", false);
+			String pubad_faud = pubad_faudvalues.toString();
+			System.out.println("PubAd_FAUD Values "+ pubad_faud.toString());
+			ATUReports.add("PubAd_FAUD Values "+ pubad_faud,false);
+//			ATUReports.add("FAUD value is present", false);
+			
+			String pubad_fgeo = pubad_fgeovalues.toString();
+			System.out.println("PubAd_FGEO Values "+ pubad_fgeo.toString());
+			ATUReports.add("PubAd_FGEO Values "+ pubad_fgeo,false);
+//			ATUReports.add("FGEO value is present", false);
+    */
 			System.out.println("Verification of FactualCall test case done");
 		
 				

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
       <class name="com.twc.AD_TestSuite.Smoke_Test">
         <methods>
+          <include name="downloadTheAPP"/>
           <include name="getBuildVersion"/>
+          <include name="AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE"/>
+          <include name="movefiles"/>
           <include name="AD_C333182_LotameAdTargeting_On_AppLaunch"/>
-          <include name="App_Kill_ReLaunch"/>
+          <include name="AD_C333174_FactualCall_On_FreshLaunch_RE"/>
           <include name="Capabilities_Launch"/>
         </methods>
       </class> <!-- com.twc.AD_TestSuite.Smoke_Test -->

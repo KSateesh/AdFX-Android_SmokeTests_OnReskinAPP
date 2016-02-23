@@ -67,18 +67,22 @@ public class SmokeTest_AD_C333172_CleanLaunch extends Driver{
 			WebElement	skiSlopes=null;
 
 			Thread.sleep(4000);
-
+//			Swipe.swipe();
 		
 			try {
-
+//				skiSlopesText = Ad.findElementById("com.weather.Weather:id/ski_module_header").getText();
+//				System.out.println("Ski Module Text is : " + skiSlopesText);
 				skiSlopes = Ad.findElementById("com.weather.Weather:id/ski_module_header");
-
-            } catch (Exception e) {
+//				skiSlopes = Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]");
+			    } catch (Exception e) {
 				    // System.out.println(e);	
+//			    	skiSlopesText = Ad.findElementById("com.weather.Weather:id/ski_title").getText();
+//			    	System.out.println("Ski Module Text is : " + skiSlopesText);
+//			    	skiSlopes = Ad.findElementById("com.weather.Weather:id/ski_title");
+			       }
 
-            }
-            
-            if (skiSlopes!=null && skiSlopes.isDisplayed()) {
+//			if (skiSlopesText.contains("Ski") ) {
+				if (skiSlopes!=null && skiSlopes.isDisplayed()) {
 				
 				 System.out.println("Ski module is present");
 				

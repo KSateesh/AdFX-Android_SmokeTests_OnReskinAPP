@@ -5,6 +5,7 @@ import com.twc.driver.Driver;
 public class app_Kill_Relaunch extends Driver {
 
 	public static void Kill_realaunch() throws Exception {
+		
 		// Thread.sleep(2000);
 		
 		// Close the app

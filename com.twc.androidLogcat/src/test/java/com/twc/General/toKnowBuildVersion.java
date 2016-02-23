@@ -1,5 +1,8 @@
 package com.twc.General;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.openqa.selenium.By;
@@ -20,11 +23,13 @@ public class toKnowBuildVersion extends Driver {
 	WebElement aboutThisAPP = null;
 	WebElement backButton = null;
 	
-	public void moreOptionsClick() throws InterruptedException {
-
+	public void moreOptionsClick() throws InterruptedException, IOException {
+		
+		Thread.sleep(4000);
+		
 		System.out.println("Get the Build version of APP");
 
-		//Wait for 20 sec for element presence
+		//Wait for the specified Element Presence
 		WebDriverWait wait = new WebDriverWait(Ad, 6);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.ImageButton[1]")));
 		
@@ -33,13 +38,15 @@ public class toKnowBuildVersion extends Driver {
 
 		menu.click();
 
+		Thread.sleep(8000);
+		
 		// Clicking on Setting link
 
 		Ad.findElementByName("Settings").click();
 
 		// System.out.println("Searching for About this app element");
 
-		System.out.println("About this app element is found, get build version");
+		System.out.println("\"About this app\"" +" element is found, get build version");
 		
 		aboutThisAPP = Ad.findElementByName("About this app");
 		
@@ -48,6 +55,12 @@ public class toKnowBuildVersion extends Driver {
 		String BuildVersion = Ad.findElementById("com.weather.Weather:id/about_version").getText();
 		
 		System.out.println("Build Version is : " + BuildVersion);
+		
+		properties.setProperty("buildVersion", BuildVersion);
+		
+		FileOutputStream fout = new FileOutputStream(properties.getProperty("dataFilePath"));
+		
+		properties.store(fout, "Adding Build Version");
 		
 		backButton = Ad.findElementByAccessibilityId("Navigate up");
 
@@ -85,7 +98,7 @@ public class toKnowBuildVersion extends Driver {
 //
 //		}
 
-		System.out.println("Build version taken from the About this app section under settings");
+		System.out.println("Build version is taken from \"About this app\" section under Settings");
 
 	}
 

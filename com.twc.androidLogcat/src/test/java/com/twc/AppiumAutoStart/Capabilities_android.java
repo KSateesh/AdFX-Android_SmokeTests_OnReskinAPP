@@ -14,6 +14,7 @@ import com.twc.driver.PropertyFile;
 
 @SuppressWarnings("unused")
 public class Capabilities_android extends Driver {
+
 	
 	@SuppressWarnings({ "rawtypes" })
 	public void dcap() throws InterruptedException, IOException {
@@ -22,7 +23,7 @@ public class Capabilities_android extends Driver {
 			Driver.property();
 			PropertyFile.property();
 
-        //  Appium auto start and Killing ADB server
+	    //  Appium auto start and Killing ADB server
 		     
 		Start_Stop_AppiumServer as = new Start_Stop_AppiumServer();
 		
@@ -33,17 +34,15 @@ public class Capabilities_android extends Driver {
 		
 		System.out.println("===================================");
 
-        //To Uninstall the APK
-		 System.out.println("Uninstall the APP");
-	
+		  	 //To Uninstall the APK
+		 System.out.println("Uninstall the APP and Install");	
 		 String[] uninstall ={"/bin/bash", "-c",  properties.getProperty("adbPath")+" shell pm uninstall com.weather.Weather"};
-	     Process  apk_uninstall = Runtime.getRuntime().exec(uninstall);
-        
-	     Thread.sleep(9000);
-         System.out.println("APP Uninstallation is done");
-        
+	     Process  apk_uninstall = Runtime.getRuntime().exec(uninstall);	
+	     Thread.sleep(4000);
+	    
         System.out.println("===================================");
-	    		
+		
+		
 		System.out.println("Stopping the appium server");
 		as.stopAppiumServer();
 		System.out.println("Appium server is stopped");
@@ -53,6 +52,7 @@ public class Capabilities_android extends Driver {
 		System.out.println("Starting the appium server");
 		as.startAppiumServer();
 		System.out.println("Appium server is started and running");
+		System.out.println("Install the app");
 		Thread.sleep(50000);
 		
         //Setting the Capabilities 

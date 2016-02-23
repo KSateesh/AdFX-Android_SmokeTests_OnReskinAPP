@@ -34,9 +34,6 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 
 	@SuppressWarnings({ "unchecked", "unused", "deprecation", "resource" })
 	public void Factual_Test() throws Exception{
-
-		//app kill and relaunch the app
-				app_Kill_Relaunch.Kill_realaunch();
 				
 		//Read data from Property file if required
 	    Driver.property();
@@ -142,7 +139,7 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 						faudValue = entryKeys.getValue();
 						Assert.assertNotNull(faudValue);
 						System.out.println("FAUD value is present");
-						System.out.println("faud values are :" + faudValue);
+						System.out.println("faud values are : " + faudValue);
 						pubad_faudvalues.add(faudValue);
 					}
 					// Verify FGEO Value					
@@ -150,7 +147,7 @@ public class SmokeTest_AD_C333174_FactualCall extends Driver {
 						fgeoValue = entryKeys.getValue();
 						Assert.assertNotNull(fgeoValue);
 						System.out.println("FGEO value is present");
-						System.out.println("FGEO vaules are :" + fgeoValue);
+						System.out.println("FGEO vaules are : " + fgeoValue);
 						pubad_fgeovalues.add(fgeoValue);
 					}
 				}

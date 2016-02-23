@@ -1,6 +1,8 @@
 package com.twc.SmokeTestCases;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.MultiTouchAction;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSElement;
 
@@ -13,6 +15,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -42,7 +45,7 @@ public class SmokeTest_AD_C333175_Hourly extends Driver {
 		ATUReports.add("Scroll to Hourly module", false);
 
 		int MAX_SWIPES = 10;
-		
+	
 		for (int i = 0; i < MAX_SWIPES; i++) {
 
 			WebElement hourly = null;

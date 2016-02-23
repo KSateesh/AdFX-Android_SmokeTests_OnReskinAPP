@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite">
+              <span class="suite-name border-skipped">TWC_Android_SmokeTest_Suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-TWC_Android_SmokeTest_Suite">
+                    <span>testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-TWC_Android_SmokeTest_Suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-TWC_Android_SmokeTest_Suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-TWC_Android_SmokeTest_Suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-TWC_Android_SmokeTest_Suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-TWC_Android_SmokeTest_Suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-TWC_Android_SmokeTest_Suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">9 methods,  9 skipped,  </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-TWC_Android_SmokeTest_Suite" class="hide-methods skipped suite-TWC_Android_SmokeTest_Suite"> (hide)</a> <!-- hide-methods skipped suite-TWC_Android_SmokeTest_Suite -->
+                      <a href="#" panel-name="suite-TWC_Android_SmokeTest_Suite" class="show-methods skipped suite-TWC_Android_SmokeTest_Suite"> (show)</a> <!-- show-methods skipped suite-TWC_Android_SmokeTest_Suite -->
+                    </span>
+                    <div class="method-list-content skipped suite-TWC_Android_SmokeTest_Suite">
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333172_Verify_AdCalls_On_CleanLaunch">AD_C333172_Verify_AdCalls_On_CleanLaunch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE">AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333174_FactualCall_On_FreshLaunch_RE">AD_C333174_FactualCall_On_FreshLaunch_RE</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333175_Verify_Ad_Present_On_HourlyExtended_page">AD_C333175_Verify_Ad_Present_On_HourlyExtended_page</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333176_Verify_Ad_Present_On_MapsExtended_page">AD_C333176_Verify_Ad_Present_On_MapsExtended_page</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333177_Verify_Ad_Present_On_NewsExtended_page">AD_C333177_Verify_Ad_Present_On_NewsExtended_page</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333179_Verify_AdCall_On_PulltoRefresh">AD_C333179_Verify_AdCall_On_PulltoRefresh</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333180_Verify_Ad_Present_On_DailyExtended_page">AD_C333180_Verify_Ad_Present_On_DailyExtended_page</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-TWC_Android_SmokeTest_Suite" title="com.twc.AD_TestSuite.Smoke_Test" hash-for-method="AD_C333182_LotameAdTargeting_On_AppLaunch">AD_C333182_LotameAdTargeting_On_AppLaunch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content skipped suite-TWC_Android_SmokeTest_Suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-TWC_Android_SmokeTest_Suite" class="panel TWC_Android_SmokeTest_Suite">
+          <div class="suite-TWC_Android_SmokeTest_Suite-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">com.twc.AD_TestSuite.Smoke_Test</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333172_Verify_AdCalls_On_CleanLaunch">
+                  </a> <!-- AD_C333172_Verify_AdCalls_On_CleanLaunch -->
+                  <span class="method-name">AD_C333172_Verify_AdCalls_On_CleanLaunch</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE">
+                  </a> <!-- AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE -->
+                  <span class="method-name">AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333174_FactualCall_On_FreshLaunch_RE">
+                  </a> <!-- AD_C333174_FactualCall_On_FreshLaunch_RE -->
+                  <span class="method-name">AD_C333174_FactualCall_On_FreshLaunch_RE</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333175_Verify_Ad_Present_On_HourlyExtended_page">
+                  </a> <!-- AD_C333175_Verify_Ad_Present_On_HourlyExtended_page -->
+                  <span class="method-name">AD_C333175_Verify_Ad_Present_On_HourlyExtended_page</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333176_Verify_Ad_Present_On_MapsExtended_page">
+                  </a> <!-- AD_C333176_Verify_Ad_Present_On_MapsExtended_page -->
+                  <span class="method-name">AD_C333176_Verify_Ad_Present_On_MapsExtended_page</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333177_Verify_Ad_Present_On_NewsExtended_page">
+                  </a> <!-- AD_C333177_Verify_Ad_Present_On_NewsExtended_page -->
+                  <span class="method-name">AD_C333177_Verify_Ad_Present_On_NewsExtended_page</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333179_Verify_AdCall_On_PulltoRefresh">
+                  </a> <!-- AD_C333179_Verify_AdCall_On_PulltoRefresh -->
+                  <span class="method-name">AD_C333179_Verify_AdCall_On_PulltoRefresh</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333180_Verify_Ad_Present_On_DailyExtended_page">
+                  </a> <!-- AD_C333180_Verify_Ad_Present_On_DailyExtended_page -->
+                  <span class="method-name">AD_C333180_Verify_Ad_Present_On_DailyExtended_page</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AD_C333182_LotameAdTargeting_On_AppLaunch">
+                  </a> <!-- AD_C333182_LotameAdTargeting_On_AppLaunch -->
+                  <span class="method-name">AD_C333182_LotameAdTargeting_On_AppLaunch</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-TWC_Android_SmokeTest_Suite-class-skipped -->
+        </div> <!-- panel TWC_Android_SmokeTest_Suite -->
+        <div panel-name="test-xml-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite verbose=&quot;0&quot; name=&quot;TWC_Android_SmokeTest_Suite&quot; parallel=&quot;none&quot;&gt;
+  &lt;test name=&quot;Android_SmokeTest&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.twc.AD_TestSuite.Smoke_Test&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Android_SmokeTest --&gt;
+&lt;/suite&gt; &lt;!-- TWC_Android_SmokeTest_Suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for TWC_Android_SmokeTest_Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Android_SmokeTest (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for TWC_Android_SmokeTest_Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for TWC_Android_SmokeTest_Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_TWC_Android_SmokeTest_Suite');
+function tableData_TWC_Android_SmokeTest_Suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(9);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'AD_C333179_Verify_AdCall_On_PulltoRefresh')
+data.setCell(0, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(0, 3, 9);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'AD_C333182_LotameAdTargeting_On_AppLaunch')
+data.setCell(1, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(1, 3, 1);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE')
+data.setCell(2, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(2, 3, 1);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'AD_C333175_Verify_Ad_Present_On_HourlyExtended_page')
+data.setCell(3, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(3, 3, 1);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'AD_C333180_Verify_Ad_Present_On_DailyExtended_page')
+data.setCell(4, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(4, 3, 1);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'AD_C333177_Verify_Ad_Present_On_NewsExtended_page')
+data.setCell(5, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(5, 3, 0);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'AD_C333176_Verify_Ad_Present_On_MapsExtended_page')
+data.setCell(6, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(6, 3, 0);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'AD_C333174_FactualCall_On_FreshLaunch_RE')
+data.setCell(7, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(7, 3, 0);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'AD_C333172_Verify_AdCalls_On_CleanLaunch')
+data.setCell(8, 2, 'com.twc.AD_TestSuite.Smoke_Test')
+data.setCell(8, 3, 0);
+window.suiteTableData['TWC_Android_SmokeTest_Suite']= { tableData: data, tableDiv: 'times-div-TWC_Android_SmokeTest_Suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 13 ms</span>
+              <div id="times-div-TWC_Android_SmokeTest_Suite">
+              </div> <!-- times-div-TWC_Android_SmokeTest_Suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for TWC_Android_SmokeTest_Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-TWC_Android_SmokeTest_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.twc.AD_TestSuite.Smoke_Test</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">Capabilities_Launch</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">AD_C333179_Verify_AdCall_On_PulltoRefresh</span>
+                <span class="method-start">4456983 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333174_FactualCall_On_FreshLaunch_RE</span>
+                <span class="method-start">4456994 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE</span>
+                <span class="method-start">4456995 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333182_LotameAdTargeting_On_AppLaunch</span>
+                <span class="method-start">4456996 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333175_Verify_Ad_Present_On_HourlyExtended_page</span>
+                <span class="method-start">4456997 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333180_Verify_Ad_Present_On_DailyExtended_page</span>
+                <span class="method-start">4456998 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333176_Verify_Ad_Present_On_MapsExtended_page</span>
+                <span class="method-start">4457000 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333177_Verify_Ad_Present_On_NewsExtended_page</span>
+                <span class="method-start">4457001 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AD_C333172_Verify_AdCalls_On_CleanLaunch</span>
+                <span class="method-start">4457002 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

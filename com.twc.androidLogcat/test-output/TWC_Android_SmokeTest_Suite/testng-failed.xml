@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [TWC_Android_SmokeTest_Suite]" parallel="none">
+  <test name="Android_SmokeTest(failed)" parallel="none">
+    <classes>
+      <class name="com.twc.AD_TestSuite.Smoke_Test">
+        <methods>
+          <include name="AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE"/>
+          <include name="Capabilities_Launch"/>
+        </methods>
+      </class> <!-- com.twc.AD_TestSuite.Smoke_Test -->
+    </classes>
+  </test> <!-- Android_SmokeTest(failed) -->
+</suite> <!-- Failed suite [TWC_Android_SmokeTest_Suite] -->

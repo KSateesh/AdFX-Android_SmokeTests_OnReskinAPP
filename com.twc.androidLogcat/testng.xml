@@ -4,7 +4,7 @@
 	<test name="Android_SmokeTest">
 		<classes>
 			<class name="com.twc.AD_TestSuite.Smoke_Test">
-				<methods>
+				<!-- <methods>
 					<include name="AD_C333179_Verify_AdCall_On_PulltoRefresh" />
 					<include name="AD_C333174_FactualCall_On_FreshLaunch" />
 					<include name="AD_C333173_Verify_WeatherFX_ApiCall_On_FreshLaunch_RE" />
@@ -14,7 +14,7 @@
 					<include name="AD_C333176_Verify_Ad_Present_On_MapsExtended_page" />
 					<include name="AD_C333177_Verify_Ad_Present_On_NewsExtended_page" />
 					<include name="AD_C333172_Verify_AdCalls_On_CleanLaunch" />
-				</methods>
+				</methods> -->
 			</class>
 		</classes>
 	</test> <!-- Android_SmokeTest -->

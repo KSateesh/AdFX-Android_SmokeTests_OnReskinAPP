@@ -6,13 +6,23 @@ import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 
-public class Start_Stop_AppiumServer  {
+import com.twc.driver.Driver;
+import com.twc.driver.PropertyFile;
+
+public class Start_Stop_AppiumServer {
 	
 	private  Process process;  
 	private  String APPIUMSERVERSTART = "/usr/local/bin/appium";
+	
 
+	@SuppressWarnings("unused")
 	public void startAppiumServer() throws IOException, InterruptedException { 
- 
+		
+		//Reading data from Property file
+		 Driver.property();
+		 PropertyFile.property();
+		 
+		//CommandLine Arguments for Starting the APPIUM Server	
 		CommandLine command = new CommandLine("/Applications/Appium.app/Contents/Resources/node/bin/node");
 		command.addArgument("/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js", false);
 	//	command.addArgument("/Users/monocept/Desktop/Appium1.4.11",false);
@@ -36,7 +46,6 @@ public class Start_Stop_AppiumServer  {
     public  void stopAppiumServer() throws IOException {  
         String[] command ={"/usr/bin/killall","-KILL","node"};  
         
-    
         Runtime.getRuntime().exec(command);  
         //System.out.println("Appium server stop");  
     }  
@@ -50,5 +59,7 @@ public class Start_Stop_AppiumServer  {
         String[] command1 ={"/usr/bin/killall","-KILL","-9 adb"}; 
         Runtime.getRuntime().exec(command1);  
         //System.out.println("Killing the adb server");  
-    }  
+    } 
+    
+  
 }

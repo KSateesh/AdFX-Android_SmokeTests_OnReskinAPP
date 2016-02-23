@@ -1,6 +1,5 @@
 package com.twc.AD_TestSuite;
 
-
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,10 +14,13 @@ import com.twc.General.DeleteFile;
 import com.twc.General.File_Exist;
 import com.twc.General.TestMode;
 import com.twc.General.app_Kill_Relaunch;
+import com.twc.General.downloadAPP;
 import com.twc.General.setAddress_Location;
 import com.twc.General.toKnowBuildVersion;
 import com.twc.SmokeTestCases.AD_C333172_CleanLaunch;
+import com.twc.SmokeTestCases.SmokeTest_AD_C333170_Beacon;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333172_CleanLaunch;
+import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_CXTG_Value_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333174_FactualCall;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall_RE;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333174_FactualCall_RE;
@@ -33,6 +35,9 @@ import com.twc.SmokeTestCases.SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch;
 import com.twc.SmokeTestCases.SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall;
 import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule_ColdFlu;
 import com.twc.SmokeTestCases.SmokeTest_AD_C33318_HealthModule_Allergy;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33319_SkiDetailsPage;
+import com.twc.SmokeTestCases.SmokeTest_AD_C33319_SkiResorts;
+import com.twc.SmokeTestCases.SmokeTest_AD_Verify_Adchoices_Link_Navigation;
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
 import org.testng.ITestResult;
@@ -64,7 +69,7 @@ public class Smoke_Test extends Driver{
 		System.setProperty("atu.reporter.config", "./atu.properties"); 
 	}
 
-//	/*  
+    
 	  //Pull To Refresh
 	@Test(priority=0, threadPoolSize = 1,invocationCount = 1)	
 	public void AD_C333179_Verify_AdCall_On_PulltoRefresh() throws ParseException, IOException, InterruptedException
@@ -104,7 +109,7 @@ public class Smoke_Test extends Driver{
 		SmokeTest_AD_C333175_Hourly hourlyExtend = new SmokeTest_AD_C333175_Hourly();
 		hourlyExtend.verify_adpresent_onextendedHourly_page();
 	}
-	
+
 	//Daily Ad [15Days Button]
 	@Test(priority=5, threadPoolSize = 1,invocationCount = 1)
 	public void AD_C333180_Verify_Ad_Present_On_DailyExtended_page() throws Exception {
@@ -139,29 +144,69 @@ public class Smoke_Test extends Driver{
 		cleanLaunch.CleanLaunch_launch();
 
 	}
-
-    //Health Module - Cold & Flu Section
-    @Test(priority=9, threadPoolSize = 1,invocationCount = 1)
-    public void AD_C33318_HealthModule_Cold_Flu() throws Exception {
-        
-        SmokeTest_AD_C33318_HealthModule_ColdFlu cold_flu = new SmokeTest_AD_C33318_HealthModule_ColdFlu();
-        cold_flu.verify_SpotLightAd_present_on_ColdFlu_section();
-        
-    }
-   
-    //Health Module - Allergy Section
-    @Test(priority=10, threadPoolSize = 1,invocationCount = 1)
-    public void AD_C33318_HealthModule_Allergy() throws Exception {
-
-        SmokeTest_AD_C33318_HealthModule_Allergy allergy = new SmokeTest_AD_C33318_HealthModule_Allergy();
-        allergy.verify_SpotLightAd_present_on_ColdFlu_section();
-    }
+	
+	/* 
+	
 		
+	@Test(priority = 9, threadPoolSize = 1, invocationCount = 1)
+	public void AD_Verify_CreativeID_ThirdPartyBeacon() throws Exception {
+
+		SmokeTest_AD_C333170_Beacon thirdPartyBeacon = new SmokeTest_AD_C333170_Beacon();
+
+		thirdPartyBeacon.Verify_CreativeID_ThirdPartyBeacon();
+
+	}
+
+	// Health Module - Cold & Flu Section
+	@Test(priority = 10, threadPoolSize = 1, invocationCount = 1)
+	public void AD_Verify_SpotlightandBigBannerAd_On_HealthModule_Cold_Flu() throws Exception {
+
+		SmokeTest_AD_C33318_HealthModule_ColdFlu cold_flu = new SmokeTest_AD_C33318_HealthModule_ColdFlu();
+		cold_flu.verify_SpotLightAd_present_on_ColdFlu_section();
+
+	}
+	   
+		//Health Module - Allergy Section
+		@Test(priority=11, threadPoolSize = 1,invocationCount = 1)
+		public void AD_Verify_SpotlightandBigBannerAd_On_HealthModule_Allergy() throws Exception {
+
+			SmokeTest_AD_C33318_HealthModule_Allergy allergy = new SmokeTest_AD_C33318_HealthModule_Allergy();
+			allergy.verify_SpotLightAd_present_on_ColdFlu_section();
+
+		}
+
 		
-    
+	// SpotLight and Big Ad verification on SkiDetails Page
+	@Test(priority = 12, threadPoolSize = 1, invocationCount = 1)
+	public void AD_Verify_SpotlightandBigBannerAd_On_Ski_DetailsPage() throws Exception {
+
+		SmokeTest_AD_C33319_SkiDetailsPage skiResorts = new SmokeTest_AD_C33319_SkiDetailsPage();
+		skiResorts.verify_SpotLightAd_present_on_SkiDetails();
+
+	}
+				
+	// Ad verification on SkiResorts Page
+	@Test(priority = 13, threadPoolSize = 1, invocationCount = 1)
+	public void AD_Verify_Ad_Present_On_SkiResortsPage() throws Exception {
+
+		SmokeTest_AD_C33319_SkiResorts skiResorts = new SmokeTest_AD_C33319_SkiResorts();
+		skiResorts.verify_SpotLightAd_present_on_SkiResorts();
+
+	}
+	
+	*/
+	
+	
+
+	
+	@SuppressWarnings("static-access")
 	@BeforeTest
 	public void Capabilities_Launch() throws Exception {
 		
+		//Download the APP
+		downloadAPP da = new downloadAPP();
+		da.downloadTheAPP();
+
 		 //Calling the capabilities method
 		Capabilities_android cap = new Capabilities_android();
 	    cap.dcap();
@@ -200,7 +245,7 @@ public class Smoke_Test extends Driver{
 
 		Driver.property();
 		
-		PropertyFile.property();
+		//PropertyFile.property();
 		
 		ATUReports.indexPageDescription = "<h1> Android Smoke Test Report </h1> <br/> <h2> on Build "+ buildVersion + "</h2> <br/> <h2>"+"Executed on " +deviceName+ " with OS : ("+AndroidVersion+")"+"</h2>";
 
@@ -209,16 +254,6 @@ public class Smoke_Test extends Driver{
 		ATUReports.setAuthorInfo("Appium", "Android_SmokeTest", "Report");
 
 		ATUReports.currentRunDescription = "<h1>Android_Smoke Tests-Detailed Report with Pie Chart</h1>";
-
-	}
-
-	@SuppressWarnings("deprecation")
-	@BeforeMethod
-	public void App_Kill_ReLaunch() throws Exception {
-		
-//		ATUReports.add("Killing the app and relaunch the app",false);
-//		System.out.println("Killing the app and relaunch the app");
-//		app_Kill_Relaunch.Kill_realaunch();
 
 	}
 

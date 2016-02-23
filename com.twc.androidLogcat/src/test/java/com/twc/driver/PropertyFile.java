@@ -16,7 +16,7 @@ public class PropertyFile {
 	{
 	
 		String dataFilePath="/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/DataFile.Properties";
-	
+		
 		File file = new File(dataFilePath);
 		try {
 			fileInput = new FileInputStream(file);

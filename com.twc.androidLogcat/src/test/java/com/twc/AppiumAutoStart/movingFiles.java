@@ -1,29 +1,45 @@
 package com.twc.AppiumAutoStart;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 
 import com.twc.driver.Driver;
 import com.twc.driver.PropertyFile;
 
-public class movingFiles extends Driver {
+public class movingFiles  {
 
 	@SuppressWarnings("unused")
 	public static void movefiles() throws IOException {
 
-		Driver.property();
-		PropertyFile.property();
+		String reportsInfo = "/Users/monocept/Documents/workspace_luna/com.twc.androidLogcat/DataForReports.properties";
 
-		String file1 = properties.getProperty("img1");
+		File file = new File(reportsInfo);
+		
+		Properties reportProperty = new Properties();
 
-		String file2 = properties.getProperty("img2");
+		try {
+			FileInputStream reportFileInput = new FileInputStream(file);
+			
+			reportProperty.load(reportFileInput);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+     
+     
+		String file1 = reportProperty.getProperty("img1");
 
-		String file3 = properties.getProperty("css1");
+		String file2 = reportProperty.getProperty("img2");
 
-		String file4 = properties.getProperty("css2");
+		String file3 = reportProperty.getProperty("css1");
+
+		String file4 = reportProperty.getProperty("css2");
 
 		File source = new File(file1);
 
@@ -33,9 +49,9 @@ public class movingFiles extends Driver {
 
 		File css2 = new File(file4);
 
-		long start = System.nanoTime();
-
-		long end = System.nanoTime();
+//		long start = System.nanoTime();
+//
+//		long end = System.nanoTime();
 
 		FileUtils.copyFile(source, dest);
 

@@ -40,8 +40,6 @@ public class SmokeTest_AD_C333173_Verify_WeatherFX_ApiCall extends Driver {
 
 	public void SmokeTest_WFX () throws Exception{
 
-		//app kill and relaunch the app
-				app_Kill_Relaunch.Kill_realaunch();
 				
 		System.out.println("Verification of WeatherFX Call Test_Case Started");
 		

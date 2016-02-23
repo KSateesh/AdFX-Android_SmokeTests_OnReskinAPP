@@ -25,13 +25,17 @@ public class setAddress_Location extends Driver {
 	
 	public void setLocation() throws InterruptedException, IOException{
 		
-		//reading file from Property file
+		String originalContext = Ad.getContext();
+		Ad.context("NATIVE_APP");
+		
+		//Reading required data from Property file
 		 Driver.property();
 		 PropertyFile.property();
 		 
 		 System.out.println("Setting Address on the APP");
 
 		 Thread.sleep(4000);
+		 
 		 //Getting the present location on the APP
 //		 String presentLocation = Ad.findElement(By.id("com.weather.Weather:id/location_name")).getText();
 		 String presentLocation = Ad.findElement(By.id("com.weather.Weather:id/location_actionbar_name")).getText();
@@ -46,13 +50,14 @@ public class setAddress_Location extends Driver {
 
 	     System.out.println("Entering a ZipCode");
 	     
-	     Ad.findElementById("com.weather.Weather:id/search_src_text").sendKeys("10035");
+	     Ad.findElementById("com.weather.Weather:id/search_src_text").sendKeys("08302");
 //	     Ad.findElementByName("Address/City/Zip").sendKeys("10035");
 	      
-	     Thread.sleep(2000);
+//	     Thread.sleep(2000);
 	     
 	     String deviceName = properties.getProperty("deviceName");
 	     System.out.println("deviceName is : "+deviceName);
+	     Thread.sleep(2000);
 	 try{   
 	     //Selecting the Address by swipe method   
 	     if(deviceName.contains("S6")){
@@ -68,36 +73,29 @@ public class setAddress_Location extends Driver {
 //	     Ad.swipe(180,290,690,290,1000); // for nexus-1
 	     
 	     System.out.println("Selected the Address");
-	     Thread.sleep(4000);
 	     
-		 //Getting the updated location after selecting the entered ZipCode/Address 
-	     String updatedLocation = Ad.findElement(By.id("com.weather.Weather:id/location_actionbar_name")).getText();
+	     Thread.sleep(1000);
 
-	     System.out.println("Updated Location is :: " + updatedLocation);
-    	 
-	     Thread.sleep(2000);
-	     
-	     try{
-		     WebElement localAlert = Ad.findElementByName("Get Local Alerts");  
-//		     WebElement localAlert = Ad.findElementById("com.weather.Weather:id/tvTitle");
-	    	if(localAlert!=null&&localAlert.isDisplayed())
-	    	{
-	    	 System.out.println("Local Alert is present and tap on Later button");
-	    	 Ad.findElementByName("Later").click();
-//	    	 Ad.findElementById("resource-id: android:id/button2").click();
- 
-	    	}
-	    	else
-	    	{
-	    		System.out.println("No Alert is displayed");
-	    	}
-	    	
-	     }catch(Exception e){
-	    	System.out.println("No Alert is displayed");
-	     }
-	     
-	}  
+		try {
+			WebElement localAlert = Ad.findElementByName("Get Local Alerts");
+			// Ad.findElementById("com.weather.Weather:id/tvTitle");
+			if (localAlert != null && localAlert.isDisplayed()) {
+				System.out.println("\"Get Local Alert\""+" is present and tap on Later button");
+				Ad.findElementByName("Later").click();
+				// Ad.findElementById("android:id/button2").click();
+
+			} else {
+				System.out.println("\"Get Local Alert\""+" is NOT displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("\"Get Local Alert\""+" is NOT displayed");
+		}
+
+		// Getting the updated location after selecting the entered ZipCode/Address
+		String updatedLocation = Ad.findElement(By.id("com.weather.Weather:id/location_actionbar_name")).getText();
+		System.out.println("Updated Location is :: " + updatedLocation);
 
 	}
-	
 
+}

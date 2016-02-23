@@ -42,7 +42,7 @@ public class wfxtg extends Driver {
 
 				}
 			}
-//			System.out.println("pubad_ZCSvalues values are :: "+ pubad_ZCSvalues.toString());			
+			System.out.println("pubad_ZCSvalues values are :: "+ pubad_ZCSvalues.toString());			
 			return pubad_ZCSvalues;
 		}
 
@@ -67,7 +67,7 @@ public class wfxtg extends Driver {
 
 				}
 			}
-//			System.out.println("pubad_HZCSvalues values are :: "+ pubad_HZCSvalues.toString());
+			System.out.println("pubad_HZCSvalues values are :: "+ pubad_HZCSvalues.toString());
 			return 	pubad_HZCSvalues;
 		}
 
@@ -88,7 +88,7 @@ public class wfxtg extends Driver {
 
 				}
 			}
-//			System.out.println("pubad_NZCSvalues values are :: "+ pubad_NZCSvalues.toString());
+			System.out.println("pubad_NZCSvalues values are :: "+ pubad_NZCSvalues.toString());
 			return 	pubad_NZCSvalues;
 		}
 		

@@ -42,16 +42,16 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 //	public static void main(String[] args) throws IOException, InterruptedException {
 	public void Verify_LotameCall_onapp_launch_test() throws InterruptedException, ParseException, IOException
 	{
-		//reading file from Property file
+		//Reading data from Property file
 		 Driver.property();
-			PropertyFile.property();
+		 PropertyFile.property();
 
 	System.out.println("Verification of Lotame Call Test_Case Started");
-		
+
+	//Run the 'Debug' and 'Write logs to LogFile' Command
 		String adbPath = properties.getProperty("adbPath");
 		String[] str ={"/bin/bash", "-c", adbPath+" shell setprop log.tag.TwcAd DEBUG"};
 		Process p = Runtime.getRuntime().exec(str);
-		
 		System.out.println("Debug command is done");
 	
 		String[] str1 ={"/bin/bash", "-c", adbPath+" -d logcat -v time >> "+properties.getProperty("LogFilePath")};
@@ -74,12 +74,12 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 //		Swipe.swipe();
 //		Swipe.swipe();
 //		} catch(Exception e){
-//			//System.out.println("Exception message : "+e);
+////			//System.out.println("Exception message : "+e);
 //		}
 		
 		Thread.sleep(2500);
 
-		//Verify the Feed-1 Ad
+		//To verify Feed-1 Ad
 		MobileElement AdEle =(MobileElement) Ad.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[2]/android.widget.ListView[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]");
 
 		WebDriverWait wait1 = new WebDriverWait(Ad, 4);
@@ -96,8 +96,8 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 		Thread.sleep(2000);
 				
 		String pubsg=null;
-
-		//Reading the log file for feed_1 to verify SG value
+		
+		//Read logs from LogFile for feed_1 to verify PubAd_Call 'SG' values
 			
 				BufferedReader r = new BufferedReader(new FileReader(properties.getProperty("LogFilePath")));
 
@@ -106,7 +106,8 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 
 				while((line=r.readLine()) != null)
 				{
-					System.out.println("Sys data is ::"+line);
+						System.out.println("Sys data is ::"+line);
+					
 				}
 
 				String FilePath = properties.getProperty("LogFilePath");
@@ -130,9 +131,25 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+//		/*	
+				Thread.sleep(1000);
+			
+				//Verify the Lotame_API_Call is present in Logs
+				  try{
+						String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
+						lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
+						System.out.println("Ad_Lotame call is present and the url is : \n"+lotameCall);
+						ATUReports.add("Ad_Lotame call is present and the url is : \n"+lotameCall,false);
+					 }
+				  catch(Exception e){
+						String BCP_lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://bcp.crwdcntrl.net/"));
+						BCP_lotameCall = BCP_lotameCall.substring(BCP_lotameCall.indexOf("https"), BCP_lotameCall.indexOf("net")+4);
+						System.out.println("BCP_lotame call is present and the url is : \n"+BCP_lotameCall);
+						ATUReports.add("BCP_lotame call is present and the url is : \n"+BCP_lotameCall,false);
+					  }
+//			*/	  
 					Thread.sleep(1000);
-									
+					//Verify 'SG' of Feed-1 PubAd call					
 					String[] arrays;
 					String[] key;
 					List<String> pubad_sgvalues = new ArrayList<String>();
@@ -158,11 +175,12 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 								} 
 							}
 						}
+						ATUReports.add("Verify PubAd_SG values from Feed_1 call", false);
 						System.out.println("pubad_sg values are :: " + pubad_sgvalues.toString());
-						
+						ATUReports.add("PubAd_SG values are :: " + pubad_sgvalues, false);
 					}
 			  
-					 //Verify the Lotame_API_Call is present in Logs
+			/*		 //Verify the Lotame_API_Call is present in Logs
 					  try{
 							String lotameCall = sb.toString().substring(sb.toString().lastIndexOf("https://ad.crwdcntrl.net/"));
 							lotameCall = lotameCall.substring(lotameCall.indexOf("https"), lotameCall.indexOf("net")+4);
@@ -176,8 +194,9 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 							ATUReports.add("BCP_lotame call is present and the url is : \n"+BCP_lotameCall,false);
 						  }
 				   
-		               Thread.sleep(1000);
-						// Capturing the Lotame Call Data (bcp.crwdcntrl.net)
+		    
+					  Thread.sleep(2000);
+						// Capturing the Lotame Call Data (bcp.crwdcntrl.net/ad.crwdcntrl.net)
 						if(sb.toString().contains("response from server is {"+'"'+"Profile")){
 						String lotame= null;
 						if(sb.toString().contains("response from server is {"+"\"Profile\""))
@@ -236,6 +255,7 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 								    	ATUReports.add("Lotame_API Audience value "+idvalues.get(counter)+" is present in the PubAD_SG_values",false);		
 								    }
 								    else{
+//								    	System.out.println(idvalues.get(counter)+" PubAD_SG_value is NOT present in the Lotame_API Call");
 								    	System.out.println("Lotame_API Audience value "+idvalues.get(counter)+" is NOT present in the PubAD_SG_values");
 								    	ATUReports.add("Lotame_API Audience value "+idvalues.get(counter)+" is NOT present in the PubAD_SG_values",false);
 								    	Assert.fail();
@@ -244,7 +264,8 @@ public class SmokeTest_AD_C333182_Verify_Lotame_onApp_Launch extends Driver {
 			    
 						
 					}
-					
+						 
+			*/			
 				System.out.println("Lotame Call test case is done");
         }
     }

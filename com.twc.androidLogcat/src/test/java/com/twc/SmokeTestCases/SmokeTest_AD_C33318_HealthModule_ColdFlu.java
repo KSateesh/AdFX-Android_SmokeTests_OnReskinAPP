@@ -25,9 +25,9 @@ public class SmokeTest_AD_C33318_HealthModule_ColdFlu extends Driver {
 	@SuppressWarnings({ "unused", "deprecation" })
 	public void verify_SpotLightAd_present_on_ColdFlu_section() throws Exception {
 
-		// Set the App in Test Mode
-		 TestMode Ads_Test_Mode = new TestMode();
-		 Ads_Test_Mode.ChangeToTestMode();
+//		// Set the App in Test Mode
+//		 TestMode Ads_Test_Mode = new TestMode();
+//		 Ads_Test_Mode.ChangeToTestMode();
 
 		//Set the context of APP to Native
 		String originalContext = Ad.getContext();
@@ -47,7 +47,21 @@ public class SmokeTest_AD_C33318_HealthModule_ColdFlu extends Driver {
 		System.out.println("Searching for Health Module to tap on Cold & Flu section");
 		
 		ATUReports.add("Scroll to Health Module to tap on Cold & Flu section", false);
-
+		
+		Thread.sleep(1000); 
+		
+       for(int j=1;j<=6;j++){   
+       
+    	   System.out.println("In for loop : "+j);
+    	   
+    	   Thread.sleep(1000); 
+		
+    	   Swipe.swipe();
+		
+       }
+       
+       System.out.println("for loop is done");
+       
 		int MAX_SWIPES = 10;
 		for (int i = 0; i<MAX_SWIPES; i++) {
 
